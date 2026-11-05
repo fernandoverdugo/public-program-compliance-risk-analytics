@@ -139,10 +139,11 @@ def main():
         ],
         axis=1,
     )
+    full_future_window = future_windows.notna().all(axis=1)
     monthly["future_material_finding"] = future_windows.max(
         axis=1,
         skipna=True,
-    )
+    ).where(full_future_window)
 
     corrective_actions = pd.DataFrame(action_records)
 
