@@ -114,17 +114,65 @@ Validation uses four expanding temporal folds with a **three-month embargo** bet
 | --- | ---: | ---: | ---: | ---: |
 | Prevalence only | 0.500 | 0.135 | 0.1174 | 0.3984 |
 | Rule benchmark | 0.654 | 0.234 | 0.1117 | 0.3764 |
-| **Logistic regression** | **0.691** | **0.344** | **0.1065** | **0.3627** |
+| Initial full logistic | 0.691 | 0.344 | 0.1065 | 0.3627 |
+| **Preferred 10-feature logistic** | **0.728** | **0.384** | **0.1030** | **0.3495** |
 | Histogram gradient boosting | 0.649 | 0.288 | 0.1159 | 0.4130 |
 
-Regularized logistic regression is the preferred predictive benchmark because it improves on the deterministic rules across discrimination and probability-accuracy metrics while remaining interpretable.
+Feature ablation further improved the logistic model by removing provider type, region, and lower-value operational-scale features. The preferred 10-feature compliance-only specification improves every validation metric while remaining interpretable.
+
+Provider type and region are retained for segment auditing but excluded from prediction.
 
 [Read the Milestone 3 modeling findings](docs/MILESTONE3_RISK_MODELING.md)
 
 Because the data are synthetic, these performance metrics demonstrate methodology rather than expected real-world deployment performance.
 
-## Next milestone
+## Milestone 4 — model diagnostics and decision support
 
-Milestone 4 will focus on model diagnostics and decision support: calibration, risk concentration, review-capacity thresholds, model-versus-rule overlap, coefficient interpretation, and segment diagnostics.
+**Complete**
+
+Across 3,000 pooled out-of-time provider-months, the preferred model achieves:
+
+- pooled ROC-AUC: **0.727**
+- pooled average precision: **0.371**
+- calibration intercept: **-0.057**
+- calibration slope: **0.991**
+
+Review-capacity analysis:
+
+| Review capacity | Future findings captured | Precision | Lift |
+| --- | ---: | ---: | ---: |
+| Top 5% | **19.2%** | **52.0%** | **3.84×** |
+| Top 10% | **30.3%** | **41.0%** | **3.03×** |
+| Top 20% | **43.6%** | **29.5%** | **2.18×** |
+
+Model-versus-rule overlap shows that predictive ranking and deterministic controls identify related but nonidentical review populations.
+
+[Read the Milestone 4 diagnostic findings](docs/MILESTONE4_MODEL_DIAGNOSTICS.md)
+
+## Current status
+
+The core analyst and supervised data-science workflow is now complete:
+
+```text
+synthetic regulated-program data
+        ↓
+SQL monitoring + KPI reporting
+        ↓
+exceptions + repeat violations
+        ↓
+corrective-action aging
+        ↓
+severity tiers + review queues
+        ↓
+temporal predictive validation
+        ↓
+feature ablation
+        ↓
+calibration + capacity analysis
+        ↓
+segment auditing
+```
+
+Anomaly detection remains an optional extension. The next required work is portfolio presentation: concise figures, an executive summary, and a final repository quality pass.
 
 All data are synthetic. No real program, provider, client, or case information is used.
