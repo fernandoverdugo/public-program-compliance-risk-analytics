@@ -32,8 +32,9 @@ def main():
     rows = []
     for i, pid in enumerate(ids):
         unresolved = 0
-        prior_findings = 0
+        recent_findings = []
         for j, period in enumerate(periods):
+            recent_finding_count = sum(recent_findings[-6:])
             season = 1 + 0.08*np.sin(2*np.pi*j/12)
             cases = max(1, int(rng.normal(volume[i]*season, 8)))
             staff = max(1, int(rng.normal(staff0[i], 1.5)))
@@ -43,17 +44,17 @@ def main():
             ))
             complaints = rng.poisson(cases*complaint_rate)
             late = max(0, int(rng.normal(
-                1.5 + 1.2*unresolved + 0.4*prior_findings - quality[i], 3.5
+                1.5 + 0.8*unresolved + 0.7*recent_finding_count - quality[i], 3.5
             )))
             doc = float(np.clip(rng.normal(
-                0.965 - 0.012*unresolved - 0.006*prior_findings + 0.01*quality[i], 0.02
+                0.965 - 0.009*unresolved - 0.008*recent_finding_count + 0.01*quality[i], 0.02
             ), 0.75, 1.0))
-            opened = rng.poisson(0.15 + 0.15*prior_findings)
-            closed = min(unresolved + opened, rng.poisson(0.35 + 0.25*max(quality[i],0)))
+            opened = rng.poisson(0.15 + 0.10*recent_finding_count)
+            closed = min(unresolved + opened, rng.poisson(0.45 + 0.25*max(quality[i],0)))
             unresolved = max(0, unresolved + opened - closed)
-            risk = -3.6 + 0.085*late + 3.2*max(0.93-doc,0) + 0.11*complaints + 0.18*unresolved + 0.10*prior_findings + 0.035*max(caseload-12,0)
+            risk = -3.6 + 0.075*late + 3.0*max(0.93-doc,0) + 0.10*complaints + 0.16*unresolved + 0.12*recent_finding_count + 0.03*max(caseload-12,0)
             finding = rng.binomial(1, logistic(risk))
-            prior_findings += finding
+            recent_findings.append(finding)
             rows.append({
                 "provider_id": int(pid),
                 "month": str(period),
