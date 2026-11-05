@@ -20,6 +20,10 @@ def main():
     months = pd.read_csv(RAW / "provider_months.csv")
     kpis = pd.read_csv(PROCESSED / "monthly_compliance_kpis.csv")
     exceptions = pd.read_csv(PROCESSED / "exception_monitor.csv")
+    scorecard = pd.read_csv(PROCESSED / "provider_scorecard.csv")
+    summary = json.loads(
+        (PROCESSED / "scorecard_summary.json").read_text(encoding="utf-8")
+    )
     profile = json.loads(
         (PROCESSED / "dataset_profile.json").read_text(encoding="utf-8")
     )
@@ -53,6 +57,20 @@ def main():
         raise RuntimeError(
             "Exception monitor should contain one row per provider-month."
         )
+
+    if len(scorecard) != len(providers):
+        raise RuntimeError(
+            "Provider scorecard should contain one row per provider."
+        )
+
+    if scorecard["provider_id"].duplicated().any():
+        raise RuntimeError("Provider scorecard contains duplicate providers.")
+
+    if summary["providers"] != len(providers):
+        raise RuntimeError("Scorecard summary provider count mismatch.")
+
+    if len(summary["top_10_review_queue"]) != 10:
+        raise RuntimeError("Review queue should contain 10 providers.")
 
     if profile["providers"] != len(providers):
         raise RuntimeError("Dataset profile provider count mismatch.")
