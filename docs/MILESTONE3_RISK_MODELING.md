@@ -101,20 +101,42 @@ This variation matters. The project does not present the mean alone as proof of 
 
 The earliest fold is the weakest, while the latest fold is strongest. That pattern supports continued temporal diagnostics rather than broad hyperparameter tuning.
 
-## Model-selection conclusion
+## Feature ablation and final specification
 
-Regularized logistic regression is the preferred predictive benchmark at this stage because it:
+The initial logistic benchmark used 16 features, including provider type, region, operational scale measures, and compliance-history measures.
 
-- has the best mean ROC-AUC
-- has the best mean average precision
-- has the best mean Brier score
-- has the best mean log loss
-- remains easier to explain than the nonlinear challenger
-- improves on the deterministic rules without replacing their audit value
+A four-fold temporal ablation showed that the model improved when those broader descriptors were removed.
 
-Histogram gradient boosting is retained as a nonlinear challenger but does not justify the added complexity in the current benchmark.
+| Specification | Features | ROC-AUC | Average precision | Brier | Log loss |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Full logistic | 16 | 0.691 | 0.344 | 0.1065 | 0.3627 |
+| No provider descriptors | 14 | 0.713 | 0.375 | 0.1038 | 0.3529 |
+| **Compliance core** | **10** | **0.728** | **0.384** | **0.1030** | **0.3495** |
+| Compliance core, no current finding | 9 | 0.720 | 0.373 | 0.1038 | 0.3522 |
 
-The deterministic rule system also remains important. It provides explicit reason codes and a human-auditable control framework even when the predictive model ranks future risk more effectively.
+The preferred model therefore uses only direct compliance measures and recent compliance history.
+
+Provider type and region are retained for segment auditing but excluded from prediction.
+
+Absolute case volume, staff count, caseload per staff member, and raw complaint count are also excluded because normalized compliance measures and recent history perform better without them.
+
+The current-month material-finding indicator is retained because scoring occurs after the monthly reporting period is complete and the model forecasts the subsequent 90 days.
+
+The preferred specification is stored in `config/risk_model.json`.
+
+## Final model-selection conclusion
+
+The **10-feature regularized logistic regression** is the preferred predictive benchmark because it:
+
+- improves all four validation metrics over the original full model;
+- outperforms the deterministic rule benchmark;
+- excludes provider type and region from prediction;
+- relies on compliance measures that can be explained to reviewers;
+- remains easier to audit than the nonlinear challenger.
+
+Histogram gradient boosting remains documented as a nonlinear benchmark, but does not justify its added complexity here.
+
+The deterministic rule system remains an important companion because it provides explicit control-level reason codes even when the predictive model ranks future risk more effectively.
 
 ## Next work
 
