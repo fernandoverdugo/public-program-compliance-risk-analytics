@@ -1,0 +1,384 @@
+{
+  "model": "preferred 10-feature regularized logistic regression",
+  "model_version": "1.0",
+  "target": "future_material_finding",
+  "out_of_time_rows": 3000,
+  "out_of_time_positives": 406,
+  "out_of_time_prevalence": 0.13533333333333333,
+  "pooled_metrics": {
+    "roc_auc": 0.7265943385835444,
+    "average_precision": 0.3710650109306478,
+    "brier_score": 0.10304003919265779,
+    "log_loss": 0.3494750526803896
+  },
+  "pooled_capacity": [
+    {
+      "fraction": 0.05,
+      "rows": 150,
+      "positives": 78,
+      "positive_capture": 0.1921182266009852,
+      "precision": 0.52,
+      "lift": 3.8423645320197046
+    },
+    {
+      "fraction": 0.1,
+      "rows": 300,
+      "positives": 123,
+      "positive_capture": 0.30295566502463056,
+      "precision": 0.41,
+      "lift": 3.029556650246305
+    },
+    {
+      "fraction": 0.2,
+      "rows": 600,
+      "positives": 177,
+      "positive_capture": 0.43596059113300495,
+      "precision": 0.295,
+      "lift": 2.1798029556650245
+    }
+  ],
+  "calibration": {
+    "intercept": -0.057272655479347685,
+    "slope": 0.9910476921807744,
+    "bins": [
+      {
+        "rows": 300,
+        "mean_probability": 0.05024938216433698,
+        "observed_rate": 0.013333333333333334
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.06275067558431396,
+        "observed_rate": 0.05
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.07323698097555048,
+        "observed_rate": 0.08
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.0837167259044699,
+        "observed_rate": 0.10333333333333333
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.09506879642931237,
+        "observed_rate": 0.09333333333333334
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.10882456705232096,
+        "observed_rate": 0.1
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.12692309614632288,
+        "observed_rate": 0.13333333333333333
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.15489219260597362,
+        "observed_rate": 0.19
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.20447972413100315,
+        "observed_rate": 0.18
+      },
+      {
+        "rows": 300,
+        "mean_probability": 0.43669777994857395,
+        "observed_rate": 0.41
+      }
+    ]
+  },
+  "segments": {
+    "provider_type": {
+      "Community": {
+        "rows": 1716,
+        "positives": 253,
+        "status": "reported",
+        "roc_auc": 0.7614869008669716,
+        "average_precision": 0.426754082988617,
+        "brier_score": 0.1070155161800578,
+        "log_loss": 0.3574047711588611
+      },
+      "Regional": {
+        "rows": 876,
+        "positives": 114,
+        "status": "reported",
+        "roc_auc": 0.7163051986922688,
+        "average_precision": 0.37801516053764395,
+        "brier_score": 0.09917330846781931,
+        "log_loss": 0.3415038760693757
+      },
+      "Specialty": {
+        "rows": 408,
+        "positives": 39,
+        "status": "reported",
+        "roc_auc": 0.5810576054478493,
+        "average_precision": 0.11189683571840038,
+        "brier_score": 0.09462174900780497,
+        "log_loss": 0.33323817474458356
+      }
+    },
+    "region": {
+      "Central": {
+        "rows": 768,
+        "positives": 92,
+        "status": "reported",
+        "roc_auc": 0.7025501672240804,
+        "average_precision": 0.3306484905418372,
+        "brier_score": 0.09604380870422691,
+        "log_loss": 0.33256947656559016
+      },
+      "North": {
+        "rows": 732,
+        "positives": 139,
+        "status": "reported",
+        "roc_auc": 0.737476797651255,
+        "average_precision": 0.47428941977892825,
+        "brier_score": 0.13089140011480174,
+        "log_loss": 0.42307984298826007
+      },
+      "South": {
+        "rows": 828,
+        "positives": 106,
+        "status": "reported",
+        "roc_auc": 0.7247687241938012,
+        "average_precision": 0.3730101133224327,
+        "brier_score": 0.097637651997354,
+        "log_loss": 0.335736642639739
+      },
+      "West": {
+        "rows": 672,
+        "positives": 69,
+        "status": "reported",
+        "roc_auc": 0.7319441440142282,
+        "average_precision": 0.2400786953985786,
+        "brier_score": 0.08735415439774272,
+        "log_loss": 0.30554674831203177
+      }
+    }
+  },
+  "fold_diagnostics": [
+    {
+      "name": "fold_1",
+      "test_rows": 750,
+      "test_positive_rate": 0.13066666666666665,
+      "capacity": [
+        {
+          "fraction": 0.05,
+          "rows": 38,
+          "positives": 15,
+          "positive_capture": 0.15306122448979592,
+          "precision": 0.39473684210526316,
+          "lift": 3.0209452201933407
+        },
+        {
+          "fraction": 0.1,
+          "rows": 75,
+          "positives": 22,
+          "positive_capture": 0.22448979591836735,
+          "precision": 0.29333333333333333,
+          "lift": 2.2448979591836737
+        },
+        {
+          "fraction": 0.2,
+          "rows": 150,
+          "positives": 33,
+          "positive_capture": 0.336734693877551,
+          "precision": 0.22,
+          "lift": 1.6836734693877553
+        }
+      ],
+      "top_10_overlap": {
+        "model_top_10_rows": 75,
+        "rule_high_or_critical_rows": 113,
+        "overlap_rows": 37,
+        "share_model_top_10_also_rule_priority": 0.49333333333333335,
+        "model_only_rows": 38,
+        "rule_only_rows": 76
+      }
+    },
+    {
+      "name": "fold_2",
+      "test_rows": 750,
+      "test_positive_rate": 0.15733333333333333,
+      "capacity": [
+        {
+          "fraction": 0.05,
+          "rows": 38,
+          "positives": 25,
+          "positive_capture": 0.211864406779661,
+          "precision": 0.6578947368421053,
+          "lift": 4.181534344335415
+        },
+        {
+          "fraction": 0.1,
+          "rows": 75,
+          "positives": 38,
+          "positive_capture": 0.3220338983050847,
+          "precision": 0.5066666666666667,
+          "lift": 3.2203389830508478
+        },
+        {
+          "fraction": 0.2,
+          "rows": 150,
+          "positives": 60,
+          "positive_capture": 0.5084745762711864,
+          "precision": 0.4,
+          "lift": 2.5423728813559325
+        }
+      ],
+      "top_10_overlap": {
+        "model_top_10_rows": 75,
+        "rule_high_or_critical_rows": 134,
+        "overlap_rows": 49,
+        "share_model_top_10_also_rule_priority": 0.6533333333333333,
+        "model_only_rows": 26,
+        "rule_only_rows": 85
+      }
+    },
+    {
+      "name": "fold_3",
+      "test_rows": 750,
+      "test_positive_rate": 0.136,
+      "capacity": [
+        {
+          "fraction": 0.05,
+          "rows": 38,
+          "positives": 21,
+          "positive_capture": 0.20588235294117646,
+          "precision": 0.5526315789473685,
+          "lift": 4.063467492260062
+        },
+        {
+          "fraction": 0.1,
+          "rows": 75,
+          "positives": 27,
+          "positive_capture": 0.2647058823529412,
+          "precision": 0.36,
+          "lift": 2.6470588235294117
+        },
+        {
+          "fraction": 0.2,
+          "rows": 150,
+          "positives": 46,
+          "positive_capture": 0.45098039215686275,
+          "precision": 0.30666666666666664,
+          "lift": 2.2549019607843133
+        }
+      ],
+      "top_10_overlap": {
+        "model_top_10_rows": 75,
+        "rule_high_or_critical_rows": 141,
+        "overlap_rows": 54,
+        "share_model_top_10_also_rule_priority": 0.72,
+        "model_only_rows": 21,
+        "rule_only_rows": 87
+      }
+    },
+    {
+      "name": "fold_4",
+      "test_rows": 750,
+      "test_positive_rate": 0.11733333333333333,
+      "capacity": [
+        {
+          "fraction": 0.05,
+          "rows": 38,
+          "positives": 21,
+          "positive_capture": 0.23863636363636365,
+          "precision": 0.5526315789473685,
+          "lift": 4.709928229665072
+        },
+        {
+          "fraction": 0.1,
+          "rows": 75,
+          "positives": 35,
+          "positive_capture": 0.3977272727272727,
+          "precision": 0.4666666666666667,
+          "lift": 3.9772727272727275
+        },
+        {
+          "fraction": 0.2,
+          "rows": 150,
+          "positives": 43,
+          "positive_capture": 0.48863636363636365,
+          "precision": 0.2866666666666667,
+          "lift": 2.4431818181818183
+        }
+      ],
+      "top_10_overlap": {
+        "model_top_10_rows": 75,
+        "rule_high_or_critical_rows": 131,
+        "overlap_rows": 51,
+        "share_model_top_10_also_rule_priority": 0.68,
+        "model_only_rows": 24,
+        "rule_only_rows": 80
+      }
+    }
+  ],
+  "coefficient_review": {
+    "training_through": "2025-03",
+    "note": "Numeric coefficients are standardized by the modeling pipeline; categorical coefficients are relative to one-hot encoded levels.",
+    "top_coefficients": [
+      {
+        "feature": "numeric__prior_3m_documentation_complete_rate",
+        "coefficient": -0.2726313682606334,
+        "absolute_coefficient": 0.2726313682606334
+      },
+      {
+        "feature": "numeric__prior_3m_complaint_rate",
+        "coefficient": 0.2578274833219333,
+        "absolute_coefficient": 0.2578274833219333
+      },
+      {
+        "feature": "numeric__unresolved_corrective_actions",
+        "coefficient": 0.2559155283279298,
+        "absolute_coefficient": 0.2559155283279298
+      },
+      {
+        "feature": "numeric__material_finding",
+        "coefficient": 0.1734112163750412,
+        "absolute_coefficient": 0.1734112163750412
+      },
+      {
+        "feature": "numeric__prior_3m_material_findings",
+        "coefficient": 0.1537695278147088,
+        "absolute_coefficient": 0.1537695278147088
+      },
+      {
+        "feature": "numeric__complaint_rate",
+        "coefficient": 0.11199986561829046,
+        "absolute_coefficient": 0.11199986561829046
+      },
+      {
+        "feature": "numeric__documentation_complete_rate",
+        "coefficient": -0.05180719550720856,
+        "absolute_coefficient": 0.05180719550720856
+      },
+      {
+        "feature": "numeric__report_days_late",
+        "coefficient": 0.013329563609245155,
+        "absolute_coefficient": 0.013329563609245155
+      },
+      {
+        "feature": "numeric__prior_3m_report_days_late",
+        "coefficient": -0.004866097881085784,
+        "absolute_coefficient": 0.004866097881085784
+      },
+      {
+        "feature": "numeric__prior_3m_unresolved_corrective_actions",
+        "coefficient": 0.002550831777300594,
+        "absolute_coefficient": 0.002550831777300594
+      }
+    ]
+  },
+  "provenance": {
+    "workflow_run_id": 42119452009,
+    "head_sha": "c6219b90e3db0466ca374639a5ee8be19584bae3",
+    "note": "Preferred 10-feature logistic diagnostics across pooled out-of-time predictions from four embargoed temporal folds."
+  }
+}
