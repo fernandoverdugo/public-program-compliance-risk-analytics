@@ -1,75 +1,61 @@
-# Milestone 2 — Monitoring Logic, Trends, and Severity Tiers
+# Milestone 2 — Monitoring Logic, Trends, and Remediation
 
 ## Purpose
 
-Milestone 2 deepens the analyst-facing layer of the project before predictive modeling begins.
+Milestone 2 deepens the analyst-facing monitoring framework before predictive modeling.
 
-The goal is to show how a compliance analyst can move from raw exceptions to a reproducible monitoring framework with:
+It adds:
 
 - repeat-violation logic
-- trend monitoring
+- 3-month trend monitoring
 - control-level drilldowns
-- threshold sensitivity
-- severity tiers
-- transparent review reasons
+- threshold-sensitivity analysis
+- transparent severity tiers
+- corrective-action aging
+- ranked review queues with reason codes
 
-## Repeat-violation logic
+## Repeat violations
 
 A provider is treated as having a repeat issue when the same control is triggered in at least three months.
 
 Across 250 providers:
 
-- **162** have at least one repeat issue
-- **19** have repeat issues across at least two controls
-
-Repeat-issue counts:
+- **154** have at least one repeat issue
+- **20** have repeat issues across at least two controls
 
 | Control | Providers with repeat issue |
 | --- | ---: |
-| Complaints | **156** |
-| Corrective actions | **21** |
-| Late reporting | **5** |
-| Documentation | **5** |
-
-The complaint control is intentionally the most sensitive and therefore receives additional threshold analysis rather than being treated as equally severe at every cutoff.
+| Complaints | **152** |
+| Corrective actions | **17** |
+| Late reporting | **7** |
+| Documentation | **7** |
 
 ## Control-level event rates
 
-Using the stricter rule thresholds from Milestone 1:
+Using the stricter review thresholds:
 
 | Control | Exception events | Providers flagged | Provider-month flag rate |
 | --- | ---: | ---: | ---: |
-| Complaints ≥ 5% | 1,164 | 197 | 19.4% |
-| Unresolved corrective actions ≥ 3 | 136 | 37 | 2.27% |
-| Reporting delay ≥ 10 days | 86 | 61 | 1.43% |
-| Documentation completeness < 90% | 47 | 29 | 0.78% |
+| Complaints ≥ 5% | 1,170 | 185 | 19.50% |
+| Unresolved corrective actions ≥ 3 | 142 | 35 | 2.37% |
+| Reporting delay ≥ 10 days | 104 | 64 | 1.73% |
+| Documentation completeness < 90% | 67 | 29 | 1.12% |
 
-The large difference in event rates demonstrates why a single generic alert threshold is inappropriate across controls.
+The variation in alert volumes is why thresholds are evaluated separately by control.
 
 ## Threshold sensitivity
 
-Each control is evaluated at three thresholds to show how alert volume changes.
-
-Examples:
-
-- late reporting: 5, 10, and 15 days
-- documentation: 95%, 90%, and 85%
-- unresolved corrective actions: 1, 3, and 5
-- complaint rate: 3%, 5%, and 7%
-
-The complaint control illustrates the tradeoff clearly:
+The complaint control illustrates the workload tradeoff:
 
 | Complaint threshold | Alert events | Providers flagged | Provider-month alert rate |
 | --- | ---: | ---: | ---: |
-| 3% | 2,783 | 249 | 46.38% |
-| 5% | 1,164 | 197 | 19.40% |
-| 7% | 612 | 164 | 10.20% |
+| 3% | 2,779 | 248 | 46.32% |
+| 5% | 1,170 | 185 | 19.50% |
+| 7% | 634 | 151 | 10.57% |
 
-The 5% threshold is useful for broad monitoring but too common to serve as a high-priority review threshold.
+Similar sensitivity tables are produced for reporting delay, documentation completeness, and unresolved corrective actions.
 
 ## Review severity tiers
-
-The project therefore separates **watch thresholds** from stricter **high-priority thresholds**.
 
 ### Watch thresholds
 
@@ -85,106 +71,73 @@ The project therefore separates **watch thresholds** from stricter **high-priori
 - at least 3 unresolved corrective actions
 - complaint rate ≥ 7%
 
-Provider-months are then assigned:
+Provider-months are assigned:
 
 - **Critical:** material finding or at least two high-priority controls
 - **High:** exactly one high-priority control
 - **Watch:** at least one watch control but no high-priority control
-- **Routine:** no active watch or high-priority control
+- **Routine:** no watch or high-priority control
 
 Across 6,000 provider-months:
 
 | Review tier | Provider-months | Share |
 | --- | ---: | ---: |
-| Critical | **382** | 6.4% |
-| High | **682** | 11.4% |
-| Watch | **2,676** | 44.6% |
-| Routine | **2,260** | 37.7% |
+| Critical | **328** | 5.5% |
+| High | **661** | 11.0% |
+| Watch | **2,696** | 44.9% |
+| Routine | **2,315** | 38.6% |
 
-For December 2025 alone:
+For December 2025:
 
 - 16 critical
-- 26 high
-- 116 watch
-- 92 routine
-
-This creates a selective review queue while preserving a broader monitoring population.
-
-## Trend monitoring
-
-The trend table reports monthly KPIs and three-month rolling averages.
-
-December 2025 results include:
-
-| KPI | Current month | 3-month average |
-| --- | ---: | ---: |
-| Any reporting delay | 56.8% | 57.2% |
-| Documentation below 95% | 32.0% | 33.1% |
-| Open corrective action | 24.8% | 25.1% |
-| Complaints per 1,000 cases | 29.04 | 30.91 |
-| Material finding rate | 5.6% | 4.8% |
-
-The rolling averages make it easier to distinguish one-month noise from sustained deterioration.
-
-## Analyst value
-
-Milestone 2 demonstrates practical compliance-analysis judgment:
-
-1. not every alert should be treated equally;
-2. threshold selection changes workload materially;
-3. repeat issues deserve different attention from isolated events;
-4. operational trends need smoothing before escalation;
-5. every review tier should retain an explicit reason code.
-
-No machine-learning model is used for these tiers.
-
-That is intentional: the deterministic monitoring system serves as the interpretable benchmark that later predictive models must outperform.
+- 25 high
+- 115 watch
+- 94 routine
 
 ## Corrective-action aging
 
-Milestone 2 also includes a normalized corrective-action register with:
-
-- action opened date
-- due date
-- closure date
-- severity
-- current status
-- days open
-- days overdue
-
-The synthetic program generated **1,022 corrective actions**.
-
-Current status:
+The normalized corrective-action register contains **1,046 actions** with opened, due, and closure dates plus severity.
 
 | Status | Actions |
 | --- | ---: |
-| Closed on time | **619** |
-| Closed late | **307** |
-| Open, not yet due | **70** |
-| Overdue and open | **26** |
+| Closed on time | **606** |
+| Closed late | **310** |
+| Open, not yet due | **71** |
+| Overdue and open | **59** |
 
 Additional review signals:
 
-- **17 providers** currently have at least one overdue open action
-- **3 high-severity actions** are both overdue and still open
-- the longest overdue action in the current register is more than 200 days overdue
+- **32 providers** currently have at least one overdue open action
+- **8 high-severity actions** are overdue and still open
+- the most overdue records exceed 300 days past due
 
-This adds a remediation-performance view that is distinct from the provider-month monitoring rules.
+## Trend monitoring
 
-## Milestone status
+December 2025:
+
+| KPI | Current month | 3-month average |
+| --- | ---: | ---: |
+| Any reporting delay | 62.0% | 60.0% |
+| Documentation below 95% | 34.8% | 34.8% |
+| Open corrective action | 26.4% | 26.8% |
+| Complaints per 1,000 cases | 32.17 | 32.00 |
+| Material finding rate | 5.6% | 4.7% |
+
+## Analyst value
+
+The milestone demonstrates that:
+
+1. alert volume changes materially with threshold choice;
+2. repeat issues should be distinguished from isolated exceptions;
+3. broad monitoring thresholds should not automatically become enforcement thresholds;
+4. trend smoothing helps separate noise from sustained deterioration;
+5. remediation aging adds a different risk dimension from monthly controls;
+6. every severity tier can retain an explicit reason code.
+
+No machine-learning model is used for the deterministic tiers.
+
+## Status
 
 **Complete**
 
-The analyst-facing compliance-monitoring layer now includes:
-
-- KPI reporting
-- explicit SQL controls
-- repeat-violation logic
-- three-month trend monitoring
-- threshold sensitivity
-- review severity tiers
-- corrective-action aging
-- ranked human-review queues
-- control-level reason codes
-
-The deterministic monitoring framework now serves as the benchmark for the next phase: predictive compliance-risk modeling.
+This monitoring framework is the benchmark that Milestone 3 predictive models must outperform.
