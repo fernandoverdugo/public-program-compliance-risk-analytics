@@ -21,3 +21,6 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python -m compileall -q src tests
       - run: python -m pytest -q
+      - run: python src/generate_synthetic_data.py
+      - run: python src/build_compliance_db.py
+      - run: python src/validate_dataset.py
