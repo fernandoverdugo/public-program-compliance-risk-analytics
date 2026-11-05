@@ -24,4 +24,5 @@ jobs:
       - run: python src/generate_synthetic_data.py
       - run: python src/build_compliance_db.py
       - run: python src/summarize_scorecard.py
+      - run: python src/summarize_milestone2.py
       - run: python src/validate_dataset.py
