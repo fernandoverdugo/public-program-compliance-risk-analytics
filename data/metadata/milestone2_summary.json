@@ -1,11 +1,11 @@
 {
-  "providers_with_repeat_issue": 162,
-  "providers_with_multiple_repeat_controls": 19,
+  "providers_with_repeat_issue": 154,
+  "providers_with_multiple_repeat_controls": 20,
   "repeat_issue_counts": {
-    "repeat_late_reporting": 5,
-    "repeat_documentation_issue": 5,
-    "repeat_corrective_action_issue": 21,
-    "repeat_complaint_issue": 156
+    "repeat_late_reporting": 7,
+    "repeat_documentation_issue": 7,
+    "repeat_corrective_action_issue": 17,
+    "repeat_complaint_issue": 152
   },
   "control_summary": [
     {
@@ -34,31 +34,31 @@
     }
   ],
   "severity_tier_counts": {
-    "watch": 2676,
-    "routine": 2260,
-    "high": 682,
-    "critical": 382
+    "watch": 2696,
+    "routine": 2315,
+    "high": 661,
+    "critical": 328
   },
-  "providers_ever_critical": 183,
-  "providers_ever_high": 230,
+  "providers_ever_critical": 133,
+  "providers_ever_high": 206,
   "latest_month_tiers": {
-    "watch": 116,
-    "routine": 92,
-    "high": 26,
+    "watch": 115,
+    "routine": 94,
+    "high": 25,
     "critical": 16
   },
   "latest_trend": {
     "month": "2025-12",
-    "late_report_rate": 0.568,
-    "late_report_rate_3m": 0.572,
-    "documentation_exception_rate": 0.32,
-    "documentation_exception_rate_3m": 0.3307,
-    "open_corrective_action_rate": 0.248,
-    "open_corrective_action_rate_3m": 0.2507,
-    "complaints_per_1000_cases": 29.04,
-    "complaints_per_1000_cases_3m": 30.91,
+    "late_report_rate": 0.62,
+    "late_report_rate_3m": 0.6,
+    "documentation_exception_rate": 0.348,
+    "documentation_exception_rate_3m": 0.348,
+    "open_corrective_action_rate": 0.264,
+    "open_corrective_action_rate_3m": 0.268,
+    "complaints_per_1000_cases": 32.17,
+    "complaints_per_1000_cases_3m": 32,
     "material_finding_rate": 0.056,
-    "material_finding_rate_3m": 0.048
+    "material_finding_rate_3m": 0.0467
   },
   "threshold_examples": {
     "late_reporting": {
@@ -79,22 +79,22 @@
     }
   },
   "provenance": {
-    "workflow_run_id": 42117772532,
-    "head_sha": "6c50533d2d2626f665a0daf073f7793f82dd360f",
-    "note": "Deterministic synthetic compliance monitoring analysis using seed 699; includes normalized corrective-action aging."
+    "workflow_run_id": 42118403603,
+    "head_sha": "7b1eab9185e9ad0e5bf753b128f9317ce7afdf56",
+    "note": "Deterministic synthetic compliance monitoring analysis using seed 699 after strengthening persistent temporal risk."
   },
-  "corrective_actions": 1022,
-  "open_corrective_actions": 96,
+  "corrective_actions": 1046,
+  "open_corrective_actions": 130,
   "corrective_action_status_counts": {
-    "closed_on_time": 619,
-    "closed_late": 307,
-    "open_not_due": 70,
-    "overdue_open": 26
+    "closed_on_time": 606,
+    "closed_late": 310,
+    "open_not_due": 71,
+    "overdue_open": 59
   },
-  "overdue_open_actions": 26,
-  "actions_closed_late": 307,
-  "high_severity_overdue_open": 3,
-  "providers_with_overdue_open_actions": 17,
+  "overdue_open_actions": 59,
+  "actions_closed_late": 310,
+  "high_severity_overdue_open": 8,
+  "providers_with_overdue_open_actions": 32,
   "top_overdue_providers": [
     {
       "provider_id": 33,
