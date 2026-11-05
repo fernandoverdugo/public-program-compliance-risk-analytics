@@ -79,8 +79,50 @@
     }
   },
   "provenance": {
-    "workflow_run_id": 42117435482,
-    "head_sha": "53c76765a464674e18c6b02456847faa42c9ca67",
-    "note": "Deterministic synthetic compliance monitoring analysis using seed 699; aggregate outputs only."
-  }
+    "workflow_run_id": 42117772532,
+    "head_sha": "6c50533d2d2626f665a0daf073f7793f82dd360f",
+    "note": "Deterministic synthetic compliance monitoring analysis using seed 699; includes normalized corrective-action aging."
+  },
+  "corrective_actions": 1022,
+  "open_corrective_actions": 96,
+  "corrective_action_status_counts": {
+    "closed_on_time": 619,
+    "closed_late": 307,
+    "open_not_due": 70,
+    "overdue_open": 26
+  },
+  "overdue_open_actions": 26,
+  "actions_closed_late": 307,
+  "high_severity_overdue_open": 3,
+  "providers_with_overdue_open_actions": 17,
+  "top_overdue_providers": [
+    {
+      "provider_id": 33,
+      "overdue_open_actions": 4,
+      "actions_closed_late": 3,
+      "high_severity_overdue_open": 1,
+      "max_days_overdue": 172
+    },
+    {
+      "provider_id": 35,
+      "overdue_open_actions": 3,
+      "actions_closed_late": 0,
+      "high_severity_overdue_open": 0,
+      "max_days_overdue": 120
+    },
+    {
+      "provider_id": 49,
+      "overdue_open_actions": 2,
+      "actions_closed_late": 4,
+      "high_severity_overdue_open": 0,
+      "max_days_overdue": 247
+    },
+    {
+      "provider_id": 31,
+      "overdue_open_actions": 2,
+      "actions_closed_late": 3,
+      "high_severity_overdue_open": 0,
+      "max_days_overdue": 205
+    }
+  ]
 }
