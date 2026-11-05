@@ -21,3 +21,14 @@ CREATE TABLE provider_months (
     future_material_finding INTEGER,
     PRIMARY KEY (provider_id, month)
 );
+
+
+CREATE TABLE corrective_actions (
+    action_id INTEGER PRIMARY KEY,
+    provider_id INTEGER NOT NULL,
+    opened_date TEXT NOT NULL,
+    due_date TEXT NOT NULL,
+    severity TEXT NOT NULL,
+    closed_date TEXT,
+    FOREIGN KEY (provider_id) REFERENCES providers(provider_id)
+);
