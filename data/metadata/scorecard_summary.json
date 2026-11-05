@@ -2,18 +2,18 @@
   "providers": 250,
   "provider_month_rows": 6000,
   "months": 24,
-  "material_findings": 344,
-  "future_outcome_observed_rows": 5750,
-  "providers_with_any_rule_exception": 217,
-  "providers_with_material_findings": 180,
-  "mean_rule_exceptions_per_provider": 5.732,
+  "material_findings": 292,
+  "future_outcome_observed_rows": 5250,
+  "providers_with_any_rule_exception": 210,
+  "providers_with_material_findings": 129,
+  "mean_rule_exceptions_per_provider": 5.932,
   "median_rule_exceptions_per_provider": 5,
   "latest_month": {
     "month": "2025-12",
-    "late_report_rate": 0.568,
-    "documentation_exception_rate": 0.32,
-    "open_corrective_action_rate": 0.248,
-    "complaints_per_1000_cases": 29.04,
+    "late_report_rate": 0.62,
+    "documentation_exception_rate": 0.348,
+    "open_corrective_action_rate": 0.264,
+    "complaints_per_1000_cases": 32.17,
     "material_finding_rate": 0.056
   },
   "top_10_review_queue": [
@@ -21,81 +21,81 @@
       "provider_id": 90,
       "provider_type": "Community",
       "region": "Central",
-      "total_rule_exceptions": 26,
-      "material_findings": 4,
-      "complaints_per_1000_cases": 71.88
+      "total_rule_exceptions": 47,
+      "material_findings": 12,
+      "complaints_per_1000_cases": 83.71
     },
     {
-      "provider_id": 31,
+      "provider_id": 161,
       "provider_type": "Community",
-      "region": "West",
-      "total_rule_exceptions": 24,
-      "material_findings": 4,
-      "complaints_per_1000_cases": 68.99
+      "region": "North",
+      "total_rule_exceptions": 35,
+      "material_findings": 13,
+      "complaints_per_1000_cases": 55.05
     },
     {
       "provider_id": 33,
       "provider_type": "Community",
       "region": "South",
-      "total_rule_exceptions": 22,
-      "material_findings": 2,
-      "complaints_per_1000_cases": 42.28
-    },
-    {
-      "provider_id": 60,
-      "provider_type": "Regional",
-      "region": "North",
-      "total_rule_exceptions": 21,
-      "material_findings": 4,
-      "complaints_per_1000_cases": 131.43
-    },
-    {
-      "provider_id": 112,
-      "provider_type": "Regional",
-      "region": "South",
-      "total_rule_exceptions": 20,
-      "material_findings": 2,
-      "complaints_per_1000_cases": 64.43
-    },
-    {
-      "provider_id": 170,
-      "provider_type": "Community",
-      "region": "North",
-      "total_rule_exceptions": 20,
-      "material_findings": 2,
-      "complaints_per_1000_cases": 49.73
-    },
-    {
-      "provider_id": 53,
-      "provider_type": "Specialty",
-      "region": "West",
-      "total_rule_exceptions": 18,
-      "material_findings": 3,
-      "complaints_per_1000_cases": 65.42
-    },
-    {
-      "provider_id": 26,
-      "provider_type": "Regional",
-      "region": "Central",
-      "total_rule_exceptions": 18,
-      "material_findings": 3,
-      "complaints_per_1000_cases": 64.89
+      "total_rule_exceptions": 30,
+      "material_findings": 10,
+      "complaints_per_1000_cases": 40.39
     },
     {
       "provider_id": 107,
       "provider_type": "Community",
       "region": "South",
+      "total_rule_exceptions": 21,
+      "material_findings": 5,
+      "complaints_per_1000_cases": 50.25
+    },
+    {
+      "provider_id": 199,
+      "provider_type": "Community",
+      "region": "North",
+      "total_rule_exceptions": 20,
+      "material_findings": 9,
+      "complaints_per_1000_cases": 71.12
+    },
+    {
+      "provider_id": 26,
+      "provider_type": "Regional",
+      "region": "Central",
+      "total_rule_exceptions": 19,
+      "material_findings": 4,
+      "complaints_per_1000_cases": 64.89
+    },
+    {
+      "provider_id": 112,
+      "provider_type": "Regional",
+      "region": "South",
+      "total_rule_exceptions": 19,
+      "material_findings": 0,
+      "complaints_per_1000_cases": 64.33
+    },
+    {
+      "provider_id": 181,
+      "provider_type": "Regional",
+      "region": "North",
       "total_rule_exceptions": 18,
-      "material_findings": 3,
-      "complaints_per_1000_cases": 48.93
+      "material_findings": 8,
+      "complaints_per_1000_cases": 87.64
     },
     {
       "provider_id": 52,
       "provider_type": "Specialty",
       "region": "West",
       "total_rule_exceptions": 17,
-      "material_findings": 5,
-      "complaints_per_1000_cases": 84.01
+      "material_findings": 1,
+      "complaints_per_1000_cases": 85.95
+    },
+    {
+      "provider_id": 249,
+      "provider_type": "Community",
+      "region": "North",
+      "total_rule_exceptions": 16,
+      "material_findings": 7,
+      "complaints_per_1000_cases": 70.61
     }
   ],
   "by_region": [
@@ -152,8 +152,8 @@
     }
   ],
   "provenance": {
-    "workflow_run_id": 42116846738,
-    "head_sha": "e8aaf2d8ecbdb271c2882061affeb1a70e3db2fc",
-    "note": "Deterministic synthetic compliance simulation using seed 699; aggregate results only."
+    "workflow_run_id": 42118403603,
+    "head_sha": "7b1eab9185e9ad0e5bf753b128f9317ce7afdf56",
+    "note": "Deterministic synthetic compliance simulation using seed 699 after strengthening persistent temporal risk."
   }
 }
