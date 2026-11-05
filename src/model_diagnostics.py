@@ -21,6 +21,7 @@ FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
 
 
 def concentration(y, probability, fraction):
+    probability = np.asarray(probability, dtype=float)
     count = max(1, int(math.ceil(len(y) * fraction)))
     order = np.argsort(-probability)
     selected = order[:count]
