@@ -59,9 +59,16 @@ def main():
             ),
             connection,
         )
+        scorecard = pd.read_sql_query(
+            (ROOT / "sql" / "04_provider_scorecard.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
 
     kpis.to_csv(PROCESSED / "monthly_compliance_kpis.csv", index=False)
     exceptions.to_csv(PROCESSED / "exception_monitor.csv", index=False)
+    scorecard.to_csv(PROCESSED / "provider_scorecard.csv", index=False)
 
     summary = {
         "providers": int(len(providers)),
@@ -83,6 +90,12 @@ def main():
                 ].sum(axis=1)
                 > 0
             ).sum()
+        ),
+        "providers_with_any_rule_exception": int(
+            (scorecard["total_rule_exceptions"] > 0).sum()
+        ),
+        "providers_with_material_findings": int(
+            (scorecard["material_findings"] > 0).sum()
         ),
     }
 
