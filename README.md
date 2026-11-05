@@ -74,8 +74,36 @@ The monitoring layer currently flags severe late reporting, low documentation co
 
 [Read the Milestone 1 scorecard findings](docs/MILESTONE1_SCORECARD.md)
 
+## Milestone 2 — monitoring logic and remediation analysis
+
+**Complete**
+
+The analyst layer now includes:
+
+- repeat-violation logic
+- 3-month trend monitoring
+- control-level drilldowns
+- threshold-sensitivity analysis
+- transparent review severity tiers
+- normalized corrective-action aging
+- overdue-action monitoring
+- ranked human-review queues with reason codes
+
+Across 6,000 provider-months, the current deterministic review tiers are:
+
+| Review tier | Provider-months |
+| --- | ---: |
+| Critical | **382** |
+| High | **682** |
+| Watch | **2,676** |
+| Routine | **2,260** |
+
+The corrective-action register contains **1,022 actions**, including **26 overdue open actions** and **3 high-severity overdue open actions**.
+
+[Read the Milestone 2 monitoring findings](docs/MILESTONE2_MONITORING.md)
+
 ## Next milestone
 
-Milestone 2 will deepen the analyst layer with trend analysis, repeat-violation logic, corrective-action aging, severity tiers, control drilldowns, and alert-volume sensitivity before predictive modeling begins.
+Milestone 3 will introduce predictive compliance-risk modeling and test whether statistical/ML models can improve future-finding prioritization beyond the deterministic monitoring benchmark.
 
 All data are synthetic. No real program, provider, client, or case information is used.
