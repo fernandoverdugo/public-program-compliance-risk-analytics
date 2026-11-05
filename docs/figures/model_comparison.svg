@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+<title id="title">Compliance risk model comparison</title>
+<desc id="desc">Comparison of ROC-AUC and average precision across prevalence, deterministic rules, full logistic regression, and preferred ten-feature logistic regression.</desc>
+<rect width="960" height="560" fill="#ffffff"/>
+<text x="60" y="58" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Temporal risk-model comparison</text>
+<text x="60" y="88" font-family="Arial, sans-serif" font-size="16" fill="#4b5563">Mean across four expanding time folds with a three-month embargo</text>
+<text x="60" y="145" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Model</text>
+<text x="430" y="145" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">ROC-AUC</text>
+<text x="700" y="145" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Avg. precision</text>
+<text x="60" y="205" font-family="Arial, sans-serif" font-size="17" fill="#374151">Prevalence only</text>
+<rect x="430" y="183" width="210" height="26" rx="4" fill="#cbd5e1"/>
+<text x="650" y="204" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.500</text>
+<rect x="700" y="183" width="57" height="26" rx="4" fill="#cbd5e1"/>
+<text x="767" y="204" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.135</text>
+<text x="60" y="280" font-family="Arial, sans-serif" font-size="17" fill="#374151">Deterministic rules</text>
+<rect x="430" y="258" width="275" height="26" rx="4" fill="#94a3b8"/>
+<text x="715" y="279" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.654</text>
+<rect x="700" y="293" width="98" height="26" rx="4" fill="#94a3b8"/>
+<text x="808" y="314" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.234 AP</text>
+<text x="60" y="365" font-family="Arial, sans-serif" font-size="17" fill="#374151">Initial full logistic</text>
+<rect x="430" y="343" width="290" height="26" rx="4" fill="#60a5fa"/>
+<text x="730" y="364" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.691</text>
+<rect x="700" y="378" width="145" height="26" rx="4" fill="#60a5fa"/>
+<text x="855" y="399" font-family="Arial, sans-serif" font-size="16" fill="#111827">0.344 AP</text>
+<text x="60" y="460" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">Preferred 10-feature logistic</text>
+<rect x="430" y="438" width="306" height="28" rx="4" fill="#2563eb"/>
+<text x="746" y="460" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">0.728</text>
+<rect x="700" y="478" width="161" height="28" rx="4" fill="#2563eb"/>
+<text x="871" y="500" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#111827">0.384 AP</text>
+<text x="60" y="535" font-family="Arial, sans-serif" font-size="14" fill="#6b7280">Synthetic-data benchmark. Metrics demonstrate validation methodology, not real-world deployment performance.</text>
+</svg>
