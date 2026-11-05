@@ -25,6 +25,7 @@ def main():
     trends = pd.read_csv(PROCESSED / "compliance_trends.csv")
     control_summary = pd.read_csv(PROCESSED / "control_summary.csv")
     alert_sensitivity = pd.read_csv(PROCESSED / "alert_sensitivity.csv")
+    severity = pd.read_csv(PROCESSED / "severity_tiers.csv")
     milestone2 = json.loads(
         (PROCESSED / "milestone2_summary.json").read_text(encoding="utf-8")
     )
@@ -97,6 +98,16 @@ def main():
 
     if len(alert_sensitivity) != 12:
         raise RuntimeError("Alert sensitivity should contain 12 scenarios.")
+
+    if len(severity) != len(months):
+        raise RuntimeError(
+            "Severity-tier output should contain one row per provider-month."
+        )
+
+    if not set(severity["review_tier"]).issubset(
+        {"routine", "watch", "high", "critical"}
+    ):
+        raise RuntimeError("Unexpected compliance review tier.")
 
     if milestone2["providers_with_repeat_issue"] < 0:
         raise RuntimeError("Invalid repeat-issue provider count.")
