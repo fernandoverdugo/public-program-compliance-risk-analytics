@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "status": "validated_preferred_compliance_risk_benchmark",
+  "purpose": "Preferred interpretable model for prioritizing provider review for a material compliance finding in the next three fully observed months.",
+  "scoring_time": "End of the current reporting month, after current-month compliance monitoring and material findings are known.",
+  "target": "future_material_finding",
+  "model_family": "regularized logistic regression",
+  "model_features": [
+    "complaint_rate",
+    "report_days_late",
+    "documentation_complete_rate",
+    "unresolved_corrective_actions",
+    "material_finding",
+    "prior_3m_complaint_rate",
+    "prior_3m_report_days_late",
+    "prior_3m_documentation_complete_rate",
+    "prior_3m_unresolved_corrective_actions",
+    "prior_3m_material_findings"
+  ],
+  "audit_only_features": [
+    "provider_type",
+    "region"
+  ],
+  "excluded_after_ablation": [
+    "case_volume",
+    "staff_count",
+    "caseload_per_staff",
+    "complaints"
+  ],
+  "rationale": {
+    "provider_descriptors": "Provider type and region reduced out-of-time predictive performance and are retained only for segment auditing.",
+    "operational_scale": "Absolute volume, staffing, caseload, and complaint-count fields added less value than normalized compliance measures and recent history.",
+    "current_material_finding": "Retained because the scoring point is end-of-month and the current finding is known before forecasting the next 90 days."
+  },
+  "validation": {
+    "method": "four expanding temporal folds",
+    "embargo_months": 3,
+    "weighted": false,
+    "synthetic_data": true,
+    "mean_metrics": {
+      "roc_auc": 0.7278838001717762,
+      "average_precision": 0.3839555457245548,
+      "brier_score": 0.10304003919265778,
+      "log_loss": 0.3494750526803896
+    }
+  },
+  "safeguards": [
+    "three-month embargo between training cutoff and test period",
+    "target requires all three future months to be observed",
+    "historical rolling features are shifted before aggregation",
+    "provider type and region are excluded from prediction and retained for audit",
+    "risk scores prioritize human review and do not establish noncompliance",
+    "all reported performance is synthetic-data methodology evidence, not a deployment claim"
+  ]
+}
