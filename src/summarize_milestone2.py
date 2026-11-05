@@ -20,6 +20,12 @@ def main():
         PROCESSED / "alert_sensitivity.csv"
     )
     severity = pd.read_csv(PROCESSED / "severity_tiers.csv")
+    action_aging = pd.read_csv(
+        PROCESSED / "corrective_action_aging.csv"
+    )
+    action_summary = pd.read_csv(
+        PROCESSED / "corrective_action_summary.csv"
+    )
 
     repeat_columns = [
         "repeat_late_reporting",
@@ -71,6 +77,53 @@ def main():
                 "review_tier",
             ].value_counts().to_dict().items()
         },
+        "corrective_action_status_counts": {
+            str(key): int(value)
+            for key, value in action_aging["action_status"]
+            .value_counts()
+            .to_dict()
+            .items()
+        },
+        "overdue_open_actions": int(
+            (action_aging["action_status"] == "overdue_open").sum()
+        ),
+        "actions_closed_late": int(
+            (action_aging["action_status"] == "closed_late").sum()
+        ),
+        "high_severity_overdue_open": int(
+            (
+                (action_aging["severity"] == "high")
+                & (action_aging["action_status"] == "overdue_open")
+            ).sum()
+        ),
+        "providers_with_overdue_open_actions": int(
+            (
+                action_summary["overdue_open_actions"] > 0
+            ).sum()
+        ),
+        "top_overdue_providers": [
+            {
+                "provider_id": int(row.provider_id),
+                "overdue_open_actions": int(
+                    row.overdue_open_actions
+                ),
+                "actions_closed_late": int(
+                    row.actions_closed_late
+                ),
+                "high_severity_overdue_open": int(
+                    row.high_severity_overdue_open
+                ),
+                "max_days_overdue": int(row.max_days_overdue),
+            }
+            for row in action_summary.sort_values(
+                [
+                    "overdue_open_actions",
+                    "high_severity_overdue_open",
+                    "max_days_overdue",
+                ],
+                ascending=[False, False, False],
+            ).head(10).itertuples(index=False)
+        ],
         "latest_trend": trends.iloc[-1].to_dict(),
         "previous_3m_trend": trends.iloc[-4].to_dict()
         if len(trends) >= 4
