@@ -2,9 +2,34 @@
 
 A portfolio project simulating a state-administered regulated program to demonstrate SQL-based compliance monitoring, KPI reporting, exception detection, and predictive risk analytics.
 
+
+## Project snapshot
+
+- **250** synthetic regulated providers
+- **6,000** provider-month observations
+- **1,046** corrective actions
+- **59** overdue open corrective actions
+- **10-feature** preferred compliance-risk model
+- mean temporal ROC-AUC: **0.728**
+- mean temporal average precision: **0.384**
+- top 10% of predicted risk captures **30.3%** of out-of-time future findings
+- provider type and region excluded from prediction and retained for segment auditing
+
+[Read the executive summary](docs/EXECUTIVE_SUMMARY.md)
+
+![Compliance monitoring review tiers](docs/figures/review_tiers.svg)
+
+![Temporal risk model comparison](docs/figures/model_comparison.svg)
+
+![Review capacity versus future-finding capture](docs/figures/review_capacity.svg)
+
 ## Core question
 
 Which regulated entities show patterns that warrant additional compliance review, and how can limited monitoring resources be prioritized?
+
+## Technical stack
+
+**SQL · SQLite · Python · pandas · NumPy · scikit-learn · pytest · GitHub Actions**
 
 ## Analyst layer
 
@@ -176,3 +201,18 @@ segment auditing
 Anomaly detection remains an optional extension. The next required work is portfolio presentation: concise figures, an executive summary, and a final repository quality pass.
 
 All data are synthetic. No real program, provider, client, or case information is used.
+
+
+## Documentation
+
+- [Executive Summary](docs/EXECUTIVE_SUMMARY.md)
+- [Research Design](docs/RESEARCH_DESIGN.md)
+- [Milestone 1 — Compliance Monitoring Scorecard](docs/MILESTONE1_SCORECARD.md)
+- [Milestone 2 — Monitoring Logic, Trends, and Remediation](docs/MILESTONE2_MONITORING.md)
+- [Milestone 3 — Predictive Compliance-Risk Modeling](docs/MILESTONE3_RISK_MODELING.md)
+- [Milestone 4 — Model Diagnostics & Decision Support](docs/MILESTONE4_MODEL_DIAGNOSTICS.md)
+
+
+## Responsible use
+
+This is a synthetic portfolio project. Risk scores are designed to prioritize human review, not establish noncompliance or automate enforcement. Provider type and region are excluded from the preferred model and retained only for segment auditing.
