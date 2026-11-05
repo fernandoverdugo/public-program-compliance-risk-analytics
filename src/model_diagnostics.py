@@ -4,20 +4,52 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 
-from model_features import (
-    CATEGORICAL_FEATURES,
-    NUMERIC_FEATURES,
-    TARGET,
-    load_model_frame,
-)
-from validate_risk_models import FOLDS, make_models, metrics
+from model_features import TARGET, load_model_frame
+from validate_risk_models import FOLDS, metrics
 
 
 ROOT = Path(__file__).resolve().parents[1]
 METADATA = ROOT / "data" / "metadata"
-FEATURES = NUMERIC_FEATURES + CATEGORICAL_FEATURES
+RISK_CONFIG = json.loads(
+    (ROOT / "config" / "risk_model.json").read_text(encoding="utf-8")
+)
+FEATURES = RISK_CONFIG["model_features"]
+
+
+def make_preferred_model():
+    preprocessor = ColumnTransformer(
+        transformers=[
+            (
+                "numeric",
+                Pipeline(
+                    steps=[
+                        ("imputer", SimpleImputer(strategy="median")),
+                        ("scale", StandardScaler()),
+                    ]
+                ),
+                FEATURES,
+            )
+        ]
+    )
+    return Pipeline(
+        steps=[
+            ("preprocess", preprocessor),
+            (
+                "model",
+                LogisticRegression(
+                    max_iter=2000,
+                    random_state=699,
+                ),
+            ),
+        ]
+    )
+
 
 
 def concentration(y, probability, fraction):
@@ -121,7 +153,7 @@ def fit_latest_coefficients(frame):
         & frame[TARGET].notna()
     ].copy()
 
-    model = make_models()["logistic_regression"]
+    model = make_preferred_model()
     model.fit(train[FEATURES], train[TARGET].astype(int))
 
     names = model.named_steps["preprocess"].get_feature_names_out()
@@ -166,7 +198,7 @@ def main():
             & frame[TARGET].notna()
         ].copy()
 
-        model = make_models()["logistic_regression"]
+        model = make_preferred_model()
         model.fit(train[FEATURES], train[TARGET].astype(int))
         probability = model.predict_proba(test[FEATURES])[:, 1]
 
@@ -238,7 +270,8 @@ def main():
     ]
 
     result = {
-        "model": "regularized logistic regression",
+        "model": "preferred 10-feature regularized logistic regression",
+        "model_version": RISK_CONFIG["version"],
         "target": TARGET,
         "out_of_time_rows": int(len(pooled_frame)),
         "out_of_time_positives": int(pooled_frame[TARGET].sum()),
