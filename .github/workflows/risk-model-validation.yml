@@ -9,8 +9,10 @@ on:
       - "src/model_features.py"
       - "src/validate_risk_models.py"
       - "src/model_diagnostics.py"
+      - "src/ablate_risk_features.py"
       - "tests/test_risk_modeling.py"
       - "tests/test_model_diagnostics.py"
+      - "tests/test_risk_feature_ablation.py"
       - "requirements.txt"
       - ".github/workflows/risk-model-validation.yml"
 
@@ -30,13 +32,15 @@ jobs:
 
       - run: python -m pip install -r requirements.txt
 
-      - run: python -m pytest -q tests/test_risk_modeling.py tests/test_model_diagnostics.py
+      - run: python -m pytest -q tests/test_risk_modeling.py tests/test_model_diagnostics.py tests/test_risk_feature_ablation.py
 
       - run: python src/generate_synthetic_data.py
 
       - run: python src/validate_risk_models.py
 
       - run: python src/model_diagnostics.py
+
+      - run: python src/ablate_risk_features.py
 
       - name: Validate model artifact
         run: |
@@ -71,6 +75,12 @@ jobs:
           assert diagnostics["out_of_time_rows"] == 3000
           assert len(diagnostics["pooled_capacity"]) == 3
           assert len(diagnostics["calibration"]["bins"]) >= 5
+
+          ablation = json.loads(
+              Path("data/metadata/risk_feature_ablation.json").read_text()
+          )
+          assert "compliance_core" in ablation["variants"]
+          assert ablation["variants"]["compliance_core"]["feature_count"] == 10
           PY
 
       - uses: actions/upload-artifact@v6
@@ -79,3 +89,4 @@ jobs:
           path: |
             data/metadata/risk_model_validation.json
             data/metadata/model_diagnostics.json
+            data/metadata/risk_feature_ablation.json
