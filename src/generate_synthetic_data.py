@@ -51,7 +51,7 @@ def main():
             opened = rng.poisson(0.15 + 0.15*prior_findings)
             closed = min(unresolved + opened, rng.poisson(0.35 + 0.25*max(quality[i],0)))
             unresolved = max(0, unresolved + opened - closed)
-            risk = -3.1 + 0.085*late + 3.2*max(0.93-doc,0) + 0.11*complaints + 0.18*unresolved + 0.10*prior_findings + 0.035*max(caseload-12,0)
+            risk = -3.6 + 0.085*late + 3.2*max(0.93-doc,0) + 0.11*complaints + 0.18*unresolved + 0.10*prior_findings + 0.035*max(caseload-12,0)
             finding = rng.binomial(1, logistic(risk))
             prior_findings += finding
             rows.append({
@@ -69,9 +69,16 @@ def main():
             })
 
     monthly = pd.DataFrame(rows).sort_values(["provider_id","month"])
-    monthly["future_material_finding"] = (
-        monthly.groupby("provider_id")["material_finding"]
-        .transform(lambda s: s.shift(-1).rolling(3, min_periods=1).max())
+    future_windows = pd.concat(
+        [
+            monthly.groupby("provider_id")["material_finding"].shift(-offset)
+            for offset in (1, 2, 3)
+        ],
+        axis=1,
+    )
+    monthly["future_material_finding"] = future_windows.max(
+        axis=1,
+        skipna=True,
     )
 
     raw = ROOT / "data" / "raw"
