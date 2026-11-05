@@ -1,0 +1,159 @@
+{
+  "providers": 250,
+  "provider_month_rows": 6000,
+  "months": 24,
+  "material_findings": 344,
+  "future_outcome_observed_rows": 5750,
+  "providers_with_any_rule_exception": 217,
+  "providers_with_material_findings": 180,
+  "mean_rule_exceptions_per_provider": 5.732,
+  "median_rule_exceptions_per_provider": 5,
+  "latest_month": {
+    "month": "2025-12",
+    "late_report_rate": 0.568,
+    "documentation_exception_rate": 0.32,
+    "open_corrective_action_rate": 0.248,
+    "complaints_per_1000_cases": 29.04,
+    "material_finding_rate": 0.056
+  },
+  "top_10_review_queue": [
+    {
+      "provider_id": 90,
+      "provider_type": "Community",
+      "region": "Central",
+      "total_rule_exceptions": 26,
+      "material_findings": 4,
+      "complaints_per_1000_cases": 71.88
+    },
+    {
+      "provider_id": 31,
+      "provider_type": "Community",
+      "region": "West",
+      "total_rule_exceptions": 24,
+      "material_findings": 4,
+      "complaints_per_1000_cases": 68.99
+    },
+    {
+      "provider_id": 33,
+      "provider_type": "Community",
+      "region": "South",
+      "total_rule_exceptions": 22,
+      "material_findings": 2,
+      "complaints_per_1000_cases": 42.28
+    },
+    {
+      "provider_id": 60,
+      "provider_type": "Regional",
+      "region": "North",
+      "total_rule_exceptions": 21,
+      "material_findings": 4,
+      "complaints_per_1000_cases": 131.43
+    },
+    {
+      "provider_id": 112,
+      "provider_type": "Regional",
+      "region": "South",
+      "total_rule_exceptions": 20,
+      "material_findings": 2,
+      "complaints_per_1000_cases": 64.43
+    },
+    {
+      "provider_id": 170,
+      "provider_type": "Community",
+      "region": "North",
+      "total_rule_exceptions": 20,
+      "material_findings": 2,
+      "complaints_per_1000_cases": 49.73
+    },
+    {
+      "provider_id": 53,
+      "provider_type": "Specialty",
+      "region": "West",
+      "total_rule_exceptions": 18,
+      "material_findings": 3,
+      "complaints_per_1000_cases": 65.42
+    },
+    {
+      "provider_id": 26,
+      "provider_type": "Regional",
+      "region": "Central",
+      "total_rule_exceptions": 18,
+      "material_findings": 3,
+      "complaints_per_1000_cases": 64.89
+    },
+    {
+      "provider_id": 107,
+      "provider_type": "Community",
+      "region": "South",
+      "total_rule_exceptions": 18,
+      "material_findings": 3,
+      "complaints_per_1000_cases": 48.93
+    },
+    {
+      "provider_id": 52,
+      "provider_type": "Specialty",
+      "region": "West",
+      "total_rule_exceptions": 17,
+      "material_findings": 5,
+      "complaints_per_1000_cases": 84.01
+    }
+  ],
+  "by_region": [
+    {
+      "region": "Central",
+      "providers": 64,
+      "mean_rule_exceptions": 5.09375,
+      "mean_material_findings": 1.4375,
+      "mean_complaints_per_1000_cases": 36.59234375
+    },
+    {
+      "region": "North",
+      "providers": 61,
+      "mean_rule_exceptions": 6.131147540983607,
+      "mean_material_findings": 1.360655737704918,
+      "mean_complaints_per_1000_cases": 41.300655737704915
+    },
+    {
+      "region": "South",
+      "providers": 69,
+      "mean_rule_exceptions": 5.6521739130434785,
+      "mean_material_findings": 1.3768115942028984,
+      "mean_complaints_per_1000_cases": 37.902608695652184
+    },
+    {
+      "region": "West",
+      "providers": 56,
+      "mean_rule_exceptions": 6.125,
+      "mean_material_findings": 1.3214285714285714,
+      "mean_complaints_per_1000_cases": 38.83875
+    }
+  ],
+  "by_provider_type": [
+    {
+      "provider_type": "Community",
+      "providers": 143,
+      "mean_rule_exceptions": 5.489510489510489,
+      "mean_material_findings": 1.3566433566433567,
+      "mean_complaints_per_1000_cases": 36.14783216783216
+    },
+    {
+      "provider_type": "Regional",
+      "providers": 73,
+      "mean_rule_exceptions": 6.410958904109589,
+      "mean_material_findings": 1.36986301369863,
+      "mean_complaints_per_1000_cases": 42.91219178082192
+    },
+    {
+      "provider_type": "Specialty",
+      "providers": 34,
+      "mean_rule_exceptions": 5.294117647058823,
+      "mean_material_findings": 1.4705882352941178,
+      "mean_complaints_per_1000_cases": 39.69911764705882
+    }
+  ],
+  "provenance": {
+    "workflow_run_id": 42116846738,
+    "head_sha": "e8aaf2d8ecbdb271c2882061affeb1a70e3db2fc",
+    "note": "Deterministic synthetic compliance simulation using seed 699; aggregate results only."
+  }
+}
