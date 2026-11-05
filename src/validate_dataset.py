@@ -26,6 +26,12 @@ def main():
     control_summary = pd.read_csv(PROCESSED / "control_summary.csv")
     alert_sensitivity = pd.read_csv(PROCESSED / "alert_sensitivity.csv")
     severity = pd.read_csv(PROCESSED / "severity_tiers.csv")
+    action_aging = pd.read_csv(
+        PROCESSED / "corrective_action_aging.csv"
+    )
+    action_summary = pd.read_csv(
+        PROCESSED / "corrective_action_summary.csv"
+    )
     milestone2 = json.loads(
         (PROCESSED / "milestone2_summary.json").read_text(encoding="utf-8")
     )
@@ -108,6 +114,21 @@ def main():
         {"routine", "watch", "high", "critical"}
     ):
         raise RuntimeError("Unexpected compliance review tier.")
+
+    if not set(action_aging["action_status"]).issubset(
+        {
+            "overdue_open",
+            "open_not_due",
+            "closed_late",
+            "closed_on_time",
+        }
+    ):
+        raise RuntimeError("Unexpected corrective-action status.")
+
+    if action_summary["provider_id"].duplicated().any():
+        raise RuntimeError(
+            "Corrective-action summary contains duplicate providers."
+        )
 
     if milestone2["providers_with_repeat_issue"] < 0:
         raise RuntimeError("Invalid repeat-issue provider count.")
