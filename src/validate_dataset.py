@@ -21,6 +21,13 @@ def main():
     kpis = pd.read_csv(PROCESSED / "monthly_compliance_kpis.csv")
     exceptions = pd.read_csv(PROCESSED / "exception_monitor.csv")
     scorecard = pd.read_csv(PROCESSED / "provider_scorecard.csv")
+    repeat_violations = pd.read_csv(PROCESSED / "repeat_violations.csv")
+    trends = pd.read_csv(PROCESSED / "compliance_trends.csv")
+    control_summary = pd.read_csv(PROCESSED / "control_summary.csv")
+    alert_sensitivity = pd.read_csv(PROCESSED / "alert_sensitivity.csv")
+    milestone2 = json.loads(
+        (PROCESSED / "milestone2_summary.json").read_text(encoding="utf-8")
+    )
     summary = json.loads(
         (PROCESSED / "scorecard_summary.json").read_text(encoding="utf-8")
     )
@@ -71,6 +78,28 @@ def main():
 
     if len(summary["top_10_review_queue"]) != 10:
         raise RuntimeError("Review queue should contain 10 providers.")
+
+    if len(repeat_violations) != len(providers):
+        raise RuntimeError(
+            "Repeat-violation table should contain one row per provider."
+        )
+
+    if len(trends) != months["month"].nunique():
+        raise RuntimeError("Trend table should contain one row per month.")
+
+    if set(control_summary["control_name"]) != {
+        "late_reporting",
+        "documentation",
+        "corrective_actions",
+        "complaints",
+    }:
+        raise RuntimeError("Control summary has unexpected controls.")
+
+    if len(alert_sensitivity) != 12:
+        raise RuntimeError("Alert sensitivity should contain 12 scenarios.")
+
+    if milestone2["providers_with_repeat_issue"] < 0:
+        raise RuntimeError("Invalid repeat-issue provider count.")
 
     if profile["providers"] != len(providers):
         raise RuntimeError("Dataset profile provider count mismatch.")
