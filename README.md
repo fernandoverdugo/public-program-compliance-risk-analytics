@@ -44,11 +44,12 @@ Which regulated entities show patterns that warrant additional compliance review
 ## Data science extension
 
 - compliance-risk prediction
-- anomaly detection
 - threshold tuning
 - calibration
 - explainability
 - temporal validation
+- feature ablation
+- review-capacity analysis
 
 ## Initial scenario
 
@@ -198,10 +199,48 @@ calibration + capacity analysis
 segment auditing
 ```
 
-Anomaly detection remains an optional extension. The next required work is portfolio presentation: concise figures, an executive summary, and a final repository quality pass.
+The repository is complete as a portfolio project. Future extensions should be driven by a new analytical question rather than added complexity for its own sake.
 
 All data are synthetic. No real program, provider, client, or case information is used.
 
+
+
+## Reproduce the analysis
+
+Requires Python 3.14.
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+
+python src/generate_synthetic_data.py
+python src/build_compliance_db.py
+python src/summarize_scorecard.py
+python src/summarize_milestone2.py
+python src/validate_dataset.py
+
+python src/validate_risk_models.py
+python src/ablate_risk_features.py
+python src/model_diagnostics.py
+
+python -m pytest -q
+python src/validate_project.py
+```
+
+Generated raw and processed data are intentionally excluded from version control. Aggregate analytical outputs used in the documentation are retained under `data/metadata/`.
+
+## Repository structure
+
+```text
+config/          simulation and preferred-model contracts
+data/metadata/   committed aggregate analytical results
+docs/            executive summary, milestone reports, and figures
+sql/             schema, KPI, exception, remediation, and monitoring queries
+src/             data generation, analysis, modeling, and validation
+tests/           modeling, diagnostics, and project-quality tests
+.github/         automated quality and model-validation workflows
+```
 
 ## Documentation
 
