@@ -8,7 +8,9 @@ on:
       - "src/generate_synthetic_data.py"
       - "src/model_features.py"
       - "src/validate_risk_models.py"
+      - "src/model_diagnostics.py"
       - "tests/test_risk_modeling.py"
+      - "tests/test_model_diagnostics.py"
       - "requirements.txt"
       - ".github/workflows/risk-model-validation.yml"
 
@@ -28,11 +30,13 @@ jobs:
 
       - run: python -m pip install -r requirements.txt
 
-      - run: python -m pytest -q tests/test_risk_modeling.py
+      - run: python -m pytest -q tests/test_risk_modeling.py tests/test_model_diagnostics.py
 
       - run: python src/generate_synthetic_data.py
 
       - run: python src/validate_risk_models.py
+
+      - run: python src/model_diagnostics.py
 
       - name: Validate model artifact
         run: |
@@ -60,9 +64,18 @@ jobs:
               ap = result["aggregate"][model]["average_precision"]["mean"]
               assert 0 <= roc <= 1
               assert 0 <= ap <= 1
+
+          diagnostics = json.loads(
+              Path("data/metadata/model_diagnostics.json").read_text()
+          )
+          assert diagnostics["out_of_time_rows"] == 3000
+          assert len(diagnostics["pooled_capacity"]) == 3
+          assert len(diagnostics["calibration"]["bins"]) >= 5
           PY
 
       - uses: actions/upload-artifact@v6
         with:
           name: compliance-risk-model-validation
-          path: data/metadata/risk_model_validation.json
+          path: |
+            data/metadata/risk_model_validation.json
+            data/metadata/model_diagnostics.json
