@@ -1,0 +1,313 @@
+{
+  "target": "future_material_finding",
+  "target_definition": "Any material compliance finding in the next three fully observed months.",
+  "feature_count": 16,
+  "numeric_features": [
+    "case_volume",
+    "staff_count",
+    "caseload_per_staff",
+    "complaints",
+    "complaint_rate",
+    "report_days_late",
+    "documentation_complete_rate",
+    "unresolved_corrective_actions",
+    "material_finding",
+    "prior_3m_complaint_rate",
+    "prior_3m_report_days_late",
+    "prior_3m_documentation_complete_rate",
+    "prior_3m_unresolved_corrective_actions",
+    "prior_3m_material_findings"
+  ],
+  "categorical_features": [
+    "provider_type",
+    "region"
+  ],
+  "validation": {
+    "method": "expanding temporal validation",
+    "embargo_months": 3,
+    "fold_count": 4,
+    "folds": [
+      {
+        "name": "fold_1",
+        "train_end": "2024-06",
+        "test_start": "2024-10",
+        "test_end": "2024-12"
+      },
+      {
+        "name": "fold_2",
+        "train_end": "2024-09",
+        "test_start": "2025-01",
+        "test_end": "2025-03"
+      },
+      {
+        "name": "fold_3",
+        "train_end": "2024-12",
+        "test_start": "2025-04",
+        "test_end": "2025-06"
+      },
+      {
+        "name": "fold_4",
+        "train_end": "2025-03",
+        "test_start": "2025-07",
+        "test_end": "2025-09"
+      }
+    ]
+  },
+  "fold_results": [
+    {
+      "name": "fold_1",
+      "train_end": "2024-06",
+      "test_start": "2024-10",
+      "test_end": "2024-12",
+      "train_rows": 1500,
+      "test_rows": 750,
+      "train_positive_rate": 0.118,
+      "test_positive_rate": 0.13066666666666665,
+      "models": {
+        "prevalence_only": {
+          "roc_auc": 0.5,
+          "average_precision": 0.13066666666666665,
+          "brier_score": 0.11375333333333335,
+          "log_loss": 0.38840019403005294
+        },
+        "rule_benchmark": {
+          "roc_auc": 0.6006557530987855,
+          "average_precision": 0.1871957833902075,
+          "brier_score": 0.11074342246582906,
+          "log_loss": 0.37717154911779427
+        },
+        "logistic_regression": {
+          "roc_auc": 0.6138099411543758,
+          "average_precision": 0.18822883227183018,
+          "brier_score": 0.11479297689162123,
+          "log_loss": 0.3900824762836528
+        },
+        "hist_gradient_boosting": {
+          "roc_auc": 0.5656692124702641,
+          "average_precision": 0.1630588692309158,
+          "brier_score": 0.12736858617722022,
+          "log_loss": 0.4750046839538704
+        }
+      }
+    },
+    {
+      "name": "fold_2",
+      "train_end": "2024-09",
+      "test_start": "2025-01",
+      "test_end": "2025-03",
+      "train_rows": 2250,
+      "test_rows": 750,
+      "train_positive_rate": 0.11333333333333333,
+      "test_positive_rate": 0.15733333333333333,
+      "models": {
+        "prevalence_only": {
+          "roc_auc": 0.5,
+          "average_precision": 0.15733333333333333,
+          "brier_score": 0.13451555555555558,
+          "log_loss": 0.44394219591654654
+        },
+        "rule_benchmark": {
+          "roc_auc": 0.6838393048701995,
+          "average_precision": 0.30680017756852385,
+          "brier_score": 0.12653892494122693,
+          "log_loss": 0.41354163347064293
+        },
+        "logistic_regression": {
+          "roc_auc": 0.7140366874061361,
+          "average_precision": 0.42184203175186313,
+          "brier_score": 0.11554446596330398,
+          "log_loss": 0.38660686331933347
+        },
+        "hist_gradient_boosting": {
+          "roc_auc": 0.6583485303582922,
+          "average_precision": 0.33097393935857894,
+          "brier_score": 0.12777107067115942,
+          "log_loss": 0.4564793164216391
+        }
+      }
+    },
+    {
+      "name": "fold_3",
+      "train_end": "2024-12",
+      "test_start": "2025-04",
+      "test_end": "2025-06",
+      "train_rows": 3000,
+      "test_rows": 750,
+      "train_positive_rate": 0.11766666666666667,
+      "test_positive_rate": 0.136,
+      "models": {
+        "prevalence_only": {
+          "roc_auc": 0.5,
+          "average_precision": 0.136,
+          "brier_score": 0.1178401111111111,
+          "log_loss": 0.3991864891831029
+        },
+        "rule_benchmark": {
+          "roc_auc": 0.6477169571532317,
+          "average_precision": 0.2268627598343969,
+          "brier_score": 0.11143328343446228,
+          "log_loss": 0.3753497647137568
+        },
+        "logistic_regression": {
+          "roc_auc": 0.6547446138949407,
+          "average_precision": 0.35190703279913454,
+          "brier_score": 0.107523082156065,
+          "log_loss": 0.36836310481826606
+        },
+        "hist_gradient_boosting": {
+          "roc_auc": 0.6476640038731541,
+          "average_precision": 0.2899680727405004,
+          "brier_score": 0.1136451243806174,
+          "log_loss": 0.39471755041006723
+        }
+      }
+    },
+    {
+      "name": "fold_4",
+      "train_end": "2025-03",
+      "test_start": "2025-07",
+      "test_end": "2025-09",
+      "train_rows": 3750,
+      "test_rows": 750,
+      "train_positive_rate": 0.1256,
+      "test_positive_rate": 0.11733333333333333,
+      "models": {
+        "prevalence_only": {
+          "roc_auc": 0.5,
+          "average_precision": 0.11733333333333333,
+          "brier_score": 0.10363456,
+          "log_loss": 0.36189512890498726
+        },
+        "rule_benchmark": {
+          "roc_auc": 0.6842471161768746,
+          "average_precision": 0.2144375268561873,
+          "brier_score": 0.09800084891562721,
+          "log_loss": 0.3396310338690712
+        },
+        "logistic_regression": {
+          "roc_auc": 0.7815847294699259,
+          "average_precision": 0.4146792346737138,
+          "brier_score": 0.0882061219379414,
+          "log_loss": 0.3058459066535892
+        },
+        "hist_gradient_boosting": {
+          "roc_auc": 0.7248008788794287,
+          "average_precision": 0.36724314125277313,
+          "brier_score": 0.09462404318118181,
+          "log_loss": 0.3256022424976447
+        }
+      }
+    }
+  ],
+  "aggregate": {
+    "prevalence_only": {
+      "roc_auc": {
+        "mean": 0.5,
+        "std": 0,
+        "min": 0.5,
+        "max": 0.5
+      },
+      "average_precision": {
+        "mean": 0.13533333333333333,
+        "std": 0.016635526464189244,
+        "min": 0.11733333333333333,
+        "max": 0.15733333333333333
+      },
+      "brier_score": {
+        "mean": 0.11743589,
+        "std": 0.0128571161044304,
+        "min": 0.10363456,
+        "max": 0.13451555555555558
+      },
+      "log_loss": {
+        "mean": 0.3983560020086724,
+        "std": 0.03419212464853746,
+        "min": 0.36189512890498726,
+        "max": 0.44394219591654654
+      }
+    },
+    "rule_benchmark": {
+      "roc_auc": {
+        "mean": 0.6541147828247729,
+        "std": 0.03954029487598135,
+        "min": 0.6006557530987855,
+        "max": 0.6842471161768746
+      },
+      "average_precision": {
+        "mean": 0.2338240619123289,
+        "std": 0.05139392727520148,
+        "min": 0.1871957833902075,
+        "max": 0.30680017756852385
+      },
+      "brier_score": {
+        "mean": 0.11167911993928638,
+        "std": 0.011673972021000532,
+        "min": 0.09800084891562721,
+        "max": 0.12653892494122693
+      },
+      "log_loss": {
+        "mean": 0.3764234952928163,
+        "std": 0.030183626252696872,
+        "min": 0.3396310338690712,
+        "max": 0.41354163347064293
+      }
+    },
+    "logistic_regression": {
+      "roc_auc": {
+        "mean": 0.6910439929813446,
+        "std": 0.07305028552186024,
+        "min": 0.6138099411543758,
+        "max": 0.7815847294699259
+      },
+      "average_precision": {
+        "mean": 0.3441642828741354,
+        "std": 0.10860019341442759,
+        "min": 0.18822883227183018,
+        "max": 0.42184203175186313
+      },
+      "brier_score": {
+        "mean": 0.1065166617372329,
+        "std": 0.012731684773036451,
+        "min": 0.0882061219379414,
+        "max": 0.11554446596330398
+      },
+      "log_loss": {
+        "mean": 0.3627245877687104,
+        "std": 0.039097290568468133,
+        "min": 0.3058459066535892,
+        "max": 0.3900824762836528
+      }
+    },
+    "hist_gradient_boosting": {
+      "roc_auc": {
+        "mean": 0.6491206563952847,
+        "std": 0.06526590499096181,
+        "min": 0.5656692124702641,
+        "max": 0.7248008788794287
+      },
+      "average_precision": {
+        "mean": 0.28781100564569206,
+        "std": 0.08895738959806773,
+        "min": 0.1630588692309158,
+        "max": 0.36724314125277313
+      },
+      "brier_score": {
+        "mean": 0.11585220610254471,
+        "std": 0.015601201378660494,
+        "min": 0.09462404318118181,
+        "max": 0.12777107067115942
+      },
+      "log_loss": {
+        "mean": 0.41295094832080537,
+        "std": 0.067595951910087,
+        "min": 0.3256022424976447,
+        "max": 0.4750046839538704
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42118403558,
+    "head_sha": "7b1eab9185e9ad0e5bf753b128f9317ce7afdf56",
+    "note": "Four expanding temporal holdouts with a three-month embargo; target requires a fully observed three-month future window."
+  }
+}
