@@ -14,7 +14,7 @@ def test_temporal_folds_have_three_month_embargo():
     for fold in FOLDS:
         train_end = pd.Period(fold["train_end"], freq="M")
         test_start = pd.Period(fold["test_start"], freq="M")
-        assert test_start - train_end == 4
+        assert (test_start - train_end).n == 4
 
 
 def test_history_features_use_prior_months_only():
