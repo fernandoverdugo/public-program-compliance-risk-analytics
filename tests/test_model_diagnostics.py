@@ -19,3 +19,19 @@ def test_concentration_captures_highest_risk_rows():
     assert result["positives"] == 1
     assert result["positive_capture"] == 0.5
     assert result["precision"] == 0.5
+
+
+def test_preferred_model_excludes_provider_descriptors():
+    import json
+
+    config = json.loads(
+        (ROOT / "config" / "risk_model.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    assert "provider_type" not in config["model_features"]
+    assert "region" not in config["model_features"]
+    assert set(config["audit_only_features"]) == {
+        "provider_type",
+        "region",
+    }
