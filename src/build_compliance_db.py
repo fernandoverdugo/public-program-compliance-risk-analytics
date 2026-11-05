@@ -65,10 +65,47 @@ def main():
             ),
             connection,
         )
+        repeat_violations = pd.read_sql_query(
+            (ROOT / "sql" / "05_repeat_violations.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
+        trends = pd.read_sql_query(
+            (ROOT / "sql" / "06_compliance_trends.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
+        control_summary = pd.read_sql_query(
+            (ROOT / "sql" / "07_control_summary.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
+        alert_sensitivity = pd.read_sql_query(
+            (ROOT / "sql" / "08_alert_sensitivity.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
 
     kpis.to_csv(PROCESSED / "monthly_compliance_kpis.csv", index=False)
     exceptions.to_csv(PROCESSED / "exception_monitor.csv", index=False)
     scorecard.to_csv(PROCESSED / "provider_scorecard.csv", index=False)
+    repeat_violations.to_csv(
+        PROCESSED / "repeat_violations.csv",
+        index=False,
+    )
+    trends.to_csv(PROCESSED / "compliance_trends.csv", index=False)
+    control_summary.to_csv(
+        PROCESSED / "control_summary.csv",
+        index=False,
+    )
+    alert_sensitivity.to_csv(
+        PROCESSED / "alert_sensitivity.csv",
+        index=False,
+    )
 
     summary = {
         "providers": int(len(providers)),
