@@ -89,6 +89,12 @@ def main():
             ),
             connection,
         )
+        severity_tiers = pd.read_sql_query(
+            (ROOT / "sql" / "09_severity_tiers.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
 
     kpis.to_csv(PROCESSED / "monthly_compliance_kpis.csv", index=False)
     exceptions.to_csv(PROCESSED / "exception_monitor.csv", index=False)
@@ -104,6 +110,10 @@ def main():
     )
     alert_sensitivity.to_csv(
         PROCESSED / "alert_sensitivity.csv",
+        index=False,
+    )
+    severity_tiers.to_csv(
+        PROCESSED / "severity_tiers.csv",
         index=False,
     )
 
