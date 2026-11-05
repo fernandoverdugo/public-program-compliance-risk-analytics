@@ -19,6 +19,7 @@ def main():
     sensitivity = pd.read_csv(
         PROCESSED / "alert_sensitivity.csv"
     )
+    severity = pd.read_csv(PROCESSED / "severity_tiers.csv")
 
     repeat_columns = [
         "repeat_late_reporting",
@@ -44,6 +45,32 @@ def main():
         "alert_sensitivity": sensitivity.to_dict(
             orient="records"
         ),
+        "severity_tier_counts": {
+            str(key): int(value)
+            for key, value in severity["review_tier"]
+            .value_counts()
+            .to_dict()
+            .items()
+        },
+        "providers_ever_critical": int(
+            severity.loc[
+                severity["review_tier"] == "critical",
+                "provider_id",
+            ].nunique()
+        ),
+        "providers_ever_high": int(
+            severity.loc[
+                severity["review_tier"].isin(["critical", "high"]),
+                "provider_id",
+            ].nunique()
+        ),
+        "latest_month_tiers": {
+            str(key): int(value)
+            for key, value in severity.loc[
+                severity["month"] == severity["month"].max(),
+                "review_tier",
+            ].value_counts().to_dict().items()
+        },
         "latest_trend": trends.iloc[-1].to_dict(),
         "previous_3m_trend": trends.iloc[-4].to_dict()
         if len(trends) >= 4
