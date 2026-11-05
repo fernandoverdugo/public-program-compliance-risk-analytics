@@ -216,3 +216,8 @@ All data are synthetic. No real program, provider, client, or case information i
 ## Responsible use
 
 This is a synthetic portfolio project. Risk scores are designed to prioritize human review, not establish noncompliance or automate enforcement. Provider type and region are excluded from the preferred model and retained only for segment auditing.
+
+
+## License
+
+This project is released under the [MIT License](LICENSE).
