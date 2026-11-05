@@ -1,0 +1,86 @@
+{
+  "providers_with_repeat_issue": 162,
+  "providers_with_multiple_repeat_controls": 19,
+  "repeat_issue_counts": {
+    "repeat_late_reporting": 5,
+    "repeat_documentation_issue": 5,
+    "repeat_corrective_action_issue": 21,
+    "repeat_complaint_issue": 156
+  },
+  "control_summary": [
+    {
+      "control_name": "complaints",
+      "exception_events": 1164,
+      "providers_flagged": 197,
+      "provider_month_flag_rate": 0.194
+    },
+    {
+      "control_name": "corrective_actions",
+      "exception_events": 136,
+      "providers_flagged": 37,
+      "provider_month_flag_rate": 0.0227
+    },
+    {
+      "control_name": "late_reporting",
+      "exception_events": 86,
+      "providers_flagged": 61,
+      "provider_month_flag_rate": 0.0143
+    },
+    {
+      "control_name": "documentation",
+      "exception_events": 47,
+      "providers_flagged": 29,
+      "provider_month_flag_rate": 0.0078
+    }
+  ],
+  "severity_tier_counts": {
+    "watch": 2676,
+    "routine": 2260,
+    "high": 682,
+    "critical": 382
+  },
+  "providers_ever_critical": 183,
+  "providers_ever_high": 230,
+  "latest_month_tiers": {
+    "watch": 116,
+    "routine": 92,
+    "high": 26,
+    "critical": 16
+  },
+  "latest_trend": {
+    "month": "2025-12",
+    "late_report_rate": 0.568,
+    "late_report_rate_3m": 0.572,
+    "documentation_exception_rate": 0.32,
+    "documentation_exception_rate_3m": 0.3307,
+    "open_corrective_action_rate": 0.248,
+    "open_corrective_action_rate_3m": 0.2507,
+    "complaints_per_1000_cases": 29.04,
+    "complaints_per_1000_cases_3m": 30.91,
+    "material_finding_rate": 0.056,
+    "material_finding_rate_3m": 0.048
+  },
+  "threshold_examples": {
+    "late_reporting": {
+      "watch": 5,
+      "high": 10
+    },
+    "documentation": {
+      "watch": 0.95,
+      "high": 0.9
+    },
+    "corrective_actions": {
+      "watch": 1,
+      "high": 3
+    },
+    "complaints": {
+      "watch": 0.05,
+      "high": 0.07
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42117435482,
+    "head_sha": "53c76765a464674e18c6b02456847faa42c9ca67",
+    "note": "Deterministic synthetic compliance monitoring analysis using seed 699; aggregate outputs only."
+  }
+}
