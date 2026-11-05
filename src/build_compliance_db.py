@@ -18,8 +18,13 @@ def execute_script(connection, path):
 def main():
     providers_path = RAW / "providers.csv"
     months_path = RAW / "provider_months.csv"
+    actions_path = RAW / "corrective_actions.csv"
 
-    if not providers_path.exists() or not months_path.exists():
+    if (
+        not providers_path.exists()
+        or not months_path.exists()
+        or not actions_path.exists()
+    ):
         raise FileNotFoundError(
             "Synthetic CSV files are missing. Run generate_synthetic_data.py first."
         )
@@ -28,6 +33,7 @@ def main():
 
     providers = pd.read_csv(providers_path)
     provider_months = pd.read_csv(months_path)
+    corrective_actions = pd.read_csv(actions_path)
 
     if DB.exists():
         DB.unlink()
@@ -42,6 +48,12 @@ def main():
         )
         provider_months.to_sql(
             "provider_months",
+            connection,
+            if_exists="append",
+            index=False,
+        )
+        corrective_actions.to_sql(
+            "corrective_actions",
             connection,
             if_exists="append",
             index=False,
@@ -95,6 +107,18 @@ def main():
             ),
             connection,
         )
+        action_aging = pd.read_sql_query(
+            (ROOT / "sql" / "10_corrective_action_aging.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
+        action_summary = pd.read_sql_query(
+            (ROOT / "sql" / "11_corrective_action_summary.sql").read_text(
+                encoding="utf-8"
+            ),
+            connection,
+        )
 
     kpis.to_csv(PROCESSED / "monthly_compliance_kpis.csv", index=False)
     exceptions.to_csv(PROCESSED / "exception_monitor.csv", index=False)
@@ -114,6 +138,14 @@ def main():
     )
     severity_tiers.to_csv(
         PROCESSED / "severity_tiers.csv",
+        index=False,
+    )
+    action_aging.to_csv(
+        PROCESSED / "corrective_action_aging.csv",
+        index=False,
+    )
+    action_summary.to_csv(
+        PROCESSED / "corrective_action_summary.csv",
         index=False,
     )
 
@@ -143,6 +175,10 @@ def main():
         ),
         "providers_with_material_findings": int(
             (scorecard["material_findings"] > 0).sum()
+        ),
+        "corrective_actions": int(len(corrective_actions)),
+        "open_corrective_actions": int(
+            corrective_actions["closed_date"].isna().sum()
         ),
     }
 
