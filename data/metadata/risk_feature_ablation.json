@@ -1,0 +1,501 @@
+{
+  "target": "future_material_finding",
+  "validation": {
+    "method": "four expanding temporal folds",
+    "embargo_months": 3,
+    "hyperparameter_retuning": false
+  },
+  "variants": {
+    "full": {
+      "feature_count": 16,
+      "numeric_features": [
+        "case_volume",
+        "staff_count",
+        "caseload_per_staff",
+        "complaints",
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "material_finding",
+        "prior_3m_complaint_rate",
+        "prior_3m_report_days_late",
+        "prior_3m_documentation_complete_rate",
+        "prior_3m_unresolved_corrective_actions",
+        "prior_3m_material_findings"
+      ],
+      "categorical_features": [
+        "provider_type",
+        "region"
+      ],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.6910439929813446,
+          "std": 0.07305028552186024,
+          "min": 0.6138099411543758,
+          "max": 0.7815847294699259
+        },
+        "average_precision": {
+          "mean": 0.3441642828741354,
+          "std": 0.10860019341442759,
+          "min": 0.18822883227183018,
+          "max": 0.42184203175186313
+        },
+        "brier_score": {
+          "mean": 0.1065166617372329,
+          "std": 0.012731684773036451,
+          "min": 0.0882061219379414,
+          "max": 0.11554446596330398
+        },
+        "log_loss": {
+          "mean": 0.3627245877687104,
+          "std": 0.039097290568468133,
+          "min": 0.3058459066535892,
+          "max": 0.3900824762836528
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.6138099411543758,
+          "average_precision": 0.18822883227183018,
+          "brier_score": 0.11479297689162123,
+          "log_loss": 0.3900824762836528
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.7140366874061361,
+          "average_precision": 0.42184203175186313,
+          "brier_score": 0.11554446596330398,
+          "log_loss": 0.38660686331933347
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6547446138949407,
+          "average_precision": 0.35190703279913454,
+          "brier_score": 0.107523082156065,
+          "log_loss": 0.36836310481826606
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7815847294699259,
+          "average_precision": 0.4146792346737138,
+          "brier_score": 0.0882061219379414,
+          "log_loss": 0.3058459066535892
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": 0,
+        "average_precision": 0,
+        "brier_score": 0,
+        "log_loss": 0
+      }
+    },
+    "without_provider_descriptors": {
+      "feature_count": 14,
+      "numeric_features": [
+        "case_volume",
+        "staff_count",
+        "caseload_per_staff",
+        "complaints",
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "material_finding",
+        "prior_3m_complaint_rate",
+        "prior_3m_report_days_late",
+        "prior_3m_documentation_complete_rate",
+        "prior_3m_unresolved_corrective_actions",
+        "prior_3m_material_findings"
+      ],
+      "categorical_features": [],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.7133568819589133,
+          "std": 0.05660361679723193,
+          "min": 0.6509797170401903,
+          "max": 0.7755424333974184
+        },
+        "average_precision": {
+          "mean": 0.3745825613521267,
+          "std": 0.09315531918181597,
+          "min": 0.24599828426315845,
+          "max": 0.46170221734592176
+        },
+        "brier_score": {
+          "mean": 0.10384747595910625,
+          "std": 0.010798409719417318,
+          "min": 0.08843575262544003,
+          "max": 0.11306288520569338
+        },
+        "log_loss": {
+          "mean": 0.3528534839988937,
+          "std": 0.03101800858429097,
+          "min": 0.30757303152139803,
+          "max": 0.37593713482311586
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.6509797170401903,
+          "average_precision": 0.24599828426315845,
+          "brier_score": 0.10896736735423557,
+          "log_loss": 0.3692823283270932
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.7438988414503325,
+          "average_precision": 0.46170221734592176,
+          "brier_score": 0.11306288520569338,
+          "log_loss": 0.37593713482311586
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6830065359477124,
+          "average_precision": 0.3723983680286475,
+          "brier_score": 0.10492389865105602,
+          "log_loss": 0.35862144132396784
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7755424333974184,
+          "average_precision": 0.41823137577077896,
+          "brier_score": 0.08843575262544003,
+          "log_loss": 0.30757303152139803
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": 0.02231288897756878,
+        "average_precision": 0.03041827847799128,
+        "brier_score": -0.002669185778126651,
+        "log_loss": -0.009871103769816703
+      }
+    },
+    "without_current_finding": {
+      "feature_count": 15,
+      "numeric_features": [
+        "case_volume",
+        "staff_count",
+        "caseload_per_staff",
+        "complaints",
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "prior_3m_complaint_rate",
+        "prior_3m_report_days_late",
+        "prior_3m_documentation_complete_rate",
+        "prior_3m_unresolved_corrective_actions",
+        "prior_3m_material_findings"
+      ],
+      "categorical_features": [
+        "provider_type",
+        "region"
+      ],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.6852915305088574,
+          "std": 0.08139020456304681,
+          "min": 0.6020877676223864,
+          "max": 0.7867687448503159
+        },
+        "average_precision": {
+          "mean": 0.33610932754724443,
+          "std": 0.11333323294156268,
+          "min": 0.1770640996817499,
+          "max": 0.4189494483083528
+        },
+        "brier_score": {
+          "mean": 0.10744671543501902,
+          "std": 0.013507062379143283,
+          "min": 0.08785485246935833,
+          "max": 0.11653054969095755
+        },
+        "log_loss": {
+          "mean": 0.3656356132769947,
+          "std": 0.041831386922468655,
+          "min": 0.304405888751072,
+          "max": 0.3952604775653778
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.6020877676223864,
+          "average_precision": 0.1770640996817499,
+          "brier_score": 0.11628930397787186,
+          "log_loss": 0.3952604775653778
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.7114084960308946,
+          "average_precision": 0.41587592901884846,
+          "brier_score": 0.11653054969095755,
+          "log_loss": 0.3892945518641982
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6409011135318325,
+          "average_precision": 0.3325478331800264,
+          "brier_score": 0.10911215560188833,
+          "log_loss": 0.3735815349273309
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7867687448503159,
+          "average_precision": 0.4189494483083528,
+          "brier_score": 0.08785485246935833,
+          "log_loss": 0.304405888751072
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": -0.005752462472487174,
+        "average_precision": -0.008054955326890989,
+        "brier_score": 0.0009300536977861207,
+        "log_loss": 0.0029110255082842595
+      }
+    },
+    "without_recent_history": {
+      "feature_count": 11,
+      "numeric_features": [
+        "case_volume",
+        "staff_count",
+        "caseload_per_staff",
+        "complaints",
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "material_finding"
+      ],
+      "categorical_features": [
+        "provider_type",
+        "region"
+      ],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.653731457237945,
+          "std": 0.06617519724240599,
+          "min": 0.5742612996118693,
+          "max": 0.7318216149409502
+        },
+        "average_precision": {
+          "mean": 0.33003922544195563,
+          "std": 0.09431995884545616,
+          "min": 0.19814562385905005,
+          "max": 0.40501919434360467
+        },
+        "brier_score": {
+          "mean": 0.10718072811849227,
+          "std": 0.013175451961251071,
+          "min": 0.08851944705612311,
+          "max": 0.11879921383857968
+        },
+        "log_loss": {
+          "mean": 0.36850870329555563,
+          "std": 0.03863777154793095,
+          "min": 0.3131128961415029,
+          "max": 0.3985774100294329
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.5742612996118693,
+          "average_precision": 0.19814562385905005,
+          "brier_score": 0.11322645725721603,
+          "log_loss": 0.39079198811286003
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.6734338124865908,
+          "average_precision": 0.3905215413285289,
+          "brier_score": 0.11879921383857968,
+          "log_loss": 0.3985774100294329
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6354091019123699,
+          "average_precision": 0.3264705422366387,
+          "brier_score": 0.10817779432205028,
+          "log_loss": 0.3715525188984267
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7318216149409502,
+          "average_precision": 0.40501919434360467,
+          "brier_score": 0.08851944705612311,
+          "log_loss": 0.3131128961415029
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": -0.037312535743399544,
+        "average_precision": -0.014125057432179788,
+        "brier_score": 0.0006640663812593761,
+        "log_loss": 0.005784115526845213
+      }
+    },
+    "compliance_core": {
+      "feature_count": 10,
+      "numeric_features": [
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "material_finding",
+        "prior_3m_complaint_rate",
+        "prior_3m_report_days_late",
+        "prior_3m_documentation_complete_rate",
+        "prior_3m_unresolved_corrective_actions",
+        "prior_3m_material_findings"
+      ],
+      "categorical_features": [],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.7278838001717762,
+          "std": 0.05854858327252103,
+          "min": 0.6592274946788531,
+          "max": 0.7808981049162318
+        },
+        "average_precision": {
+          "mean": 0.3839555457245548,
+          "std": 0.09183391417333615,
+          "min": 0.26143188527316785,
+          "max": 0.47677192973239807
+        },
+        "brier_score": {
+          "mean": 0.10304003919265778,
+          "std": 0.010346271896774636,
+          "min": 0.08810324549448478,
+          "max": 0.11150421812089593
+        },
+        "log_loss": {
+          "mean": 0.3494750526803896,
+          "std": 0.029233700074976894,
+          "min": 0.3063966106678366,
+          "max": 0.3691122205610168
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.6592274946788531,
+          "average_precision": 0.26143188527316785,
+          "brier_score": 0.10792536516377958,
+          "log_loss": 0.3660798716203329
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.7720178073374813,
+          "average_precision": 0.47677192973239807,
+          "brier_score": 0.11150421812089593,
+          "log_loss": 0.3691122205610168
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6993917937545389,
+          "average_precision": 0.37398768389453424,
+          "brier_score": 0.10462732799147083,
+          "log_loss": 0.35631150787237204
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7808981049162318,
+          "average_precision": 0.42363068399811915,
+          "brier_score": 0.08810324549448478,
+          "log_loss": 0.3063966106678366
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": 0.03683980719043167,
+        "average_precision": 0.039791262850419395,
+        "brier_score": -0.0034766225445751198,
+        "log_loss": -0.01324953508832083
+      }
+    },
+    "compliance_core_without_current_finding": {
+      "feature_count": 9,
+      "numeric_features": [
+        "complaint_rate",
+        "report_days_late",
+        "documentation_complete_rate",
+        "unresolved_corrective_actions",
+        "prior_3m_complaint_rate",
+        "prior_3m_report_days_late",
+        "prior_3m_documentation_complete_rate",
+        "prior_3m_unresolved_corrective_actions",
+        "prior_3m_material_findings"
+      ],
+      "categorical_features": [],
+      "metrics": {
+        "roc_auc": {
+          "mean": 0.7198000924890346,
+          "std": 0.06630423618519818,
+          "min": 0.6445943408038062,
+          "max": 0.7862537764350452
+        },
+        "average_precision": {
+          "mean": 0.373324629201911,
+          "std": 0.09844311873943747,
+          "min": 0.24254018783145084,
+          "max": 0.468520138311772
+        },
+        "brier_score": {
+          "mean": 0.10383065213381512,
+          "std": 0.011097026743735949,
+          "min": 0.0876889987788721,
+          "max": 0.11242804753233994
+        },
+        "log_loss": {
+          "mean": 0.3521587637315574,
+          "std": 0.03183122250845561,
+          "min": 0.305063121966901,
+          "max": 0.37204389781506614
+        }
+      },
+      "runs": [
+        {
+          "fold": "fold_1",
+          "roc_auc": 0.6445943408038062,
+          "average_precision": 0.24254018783145084,
+          "brier_score": 0.10940637653885418,
+          "log_loss": 0.37105817870830604
+        },
+        {
+          "fold": "fold_2",
+          "roc_auc": 0.7634091396695988,
+          "average_precision": 0.468520138311772,
+          "brier_score": 0.11242804753233994,
+          "log_loss": 0.37204389781506614
+        },
+        {
+          "fold": "fold_3",
+          "roc_auc": 0.6849431130476882,
+          "average_precision": 0.35740632495919594,
+          "brier_score": 0.10579918568519425,
+          "log_loss": 0.3604698564359563
+        },
+        {
+          "fold": "fold_4",
+          "roc_auc": 0.7862537764350452,
+          "average_precision": 0.42483186570522524,
+          "brier_score": 0.0876889987788721,
+          "log_loss": 0.305063121966901
+        }
+      ],
+      "change_from_full": {
+        "roc_auc": 0.02875609950769009,
+        "average_precision": 0.029160346327775588,
+        "brier_score": -0.002686009603417777,
+        "log_loss": -0.010565824037153004
+      }
+    }
+  },
+  "provenance": {
+    "workflow_run_id": 42119452009,
+    "head_sha": "c6219b90e3db0466ca374639a5ee8be19584bae3",
+    "note": "Four-fold temporal feature ablation without hyperparameter retuning."
+  }
+}
