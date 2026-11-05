@@ -114,7 +114,16 @@ def main():
                 action["closed_date"] = close_date.date().isoformat()
 
             unresolved = len(open_actions)
-            risk = -3.6 + 0.075*late + 3.0*max(0.93-doc,0) + 0.10*complaints + 0.16*unresolved + 0.12*recent_finding_count + 0.03*max(caseload-12,0)
+            risk = (
+                -4.5
+                + 0.12 * late
+                + 5.0 * max(0.93 - doc, 0)
+                + 0.12 * complaints
+                + 0.35 * unresolved
+                + 0.45 * recent_finding_count
+                + 0.05 * max(caseload - 12, 0)
+                + 0.25 * (-quality[i])
+            )
             finding = rng.binomial(1, logistic(risk))
             recent_findings.append(finding)
             rows.append({
