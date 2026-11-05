@@ -1,0 +1,8 @@
+{
+  "seed": 699,
+  "providers": 250,
+  "months": 24,
+  "start_month": "2024-01",
+  "regions": ["North", "Central", "South", "West"],
+  "provider_types": ["Community", "Regional", "Specialty"]
+}
