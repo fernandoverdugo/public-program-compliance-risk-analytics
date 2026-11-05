@@ -5,6 +5,7 @@ on:
   push:
     branches: ["main"]
     paths:
+      - "config/risk_model.json"
       - "src/generate_synthetic_data.py"
       - "src/model_features.py"
       - "src/validate_risk_models.py"
