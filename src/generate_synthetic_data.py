@@ -75,6 +75,7 @@ def main():
     )
 
     raw = ROOT / "data" / "raw"
+    raw.mkdir(parents=True, exist_ok=True)
     providers.to_csv(raw / "providers.csv", index=False)
     monthly.to_csv(raw / "provider_months.csv", index=False)
     print(json.dumps({
