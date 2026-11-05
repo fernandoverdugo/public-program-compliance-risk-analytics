@@ -140,15 +140,51 @@ No machine-learning model is used for these tiers.
 
 That is intentional: the deterministic monitoring system serves as the interpretable benchmark that later predictive models must outperform.
 
-## Next work
+## Corrective-action aging
 
-The next analyst-facing extension is a normalized corrective-action table with:
+Milestone 2 also includes a normalized corrective-action register with:
 
 - action opened date
 - due date
 - closure date
 - severity
-- overdue status
+- current status
 - days open
+- days overdue
 
-That will support corrective-action aging and remediation-performance analysis before the project moves into predictive risk modeling.
+The synthetic program generated **1,022 corrective actions**.
+
+Current status:
+
+| Status | Actions |
+| --- | ---: |
+| Closed on time | **619** |
+| Closed late | **307** |
+| Open, not yet due | **70** |
+| Overdue and open | **26** |
+
+Additional review signals:
+
+- **17 providers** currently have at least one overdue open action
+- **3 high-severity actions** are both overdue and still open
+- the longest overdue action in the current register is more than 200 days overdue
+
+This adds a remediation-performance view that is distinct from the provider-month monitoring rules.
+
+## Milestone status
+
+**Complete**
+
+The analyst-facing compliance-monitoring layer now includes:
+
+- KPI reporting
+- explicit SQL controls
+- repeat-violation logic
+- three-month trend monitoring
+- threshold sensitivity
+- review severity tiers
+- corrective-action aging
+- ranked human-review queues
+- control-level reason codes
+
+The deterministic monitoring framework now serves as the benchmark for the next phase: predictive compliance-risk modeling.
