@@ -29,10 +29,14 @@ def main():
     })
 
     periods = pd.period_range(CONFIG["start_month"], periods=months, freq="M")
+    action_rng = np.random.default_rng(CONFIG["seed"] + 1)
     rows = []
+    action_records = []
+    next_action_id = 1
     for i, pid in enumerate(ids):
         unresolved = 0
         recent_findings = []
+        open_actions = []
         for j, period in enumerate(periods):
             recent_finding_count = sum(recent_findings[-6:])
             season = 1 + 0.08*np.sin(2*np.pi*j/12)
@@ -50,8 +54,66 @@ def main():
                 0.965 - 0.009*unresolved - 0.008*recent_finding_count + 0.01*quality[i], 0.02
             ), 0.75, 1.0))
             opened = rng.poisson(0.15 + 0.10*recent_finding_count)
-            closed = min(unresolved + opened, rng.poisson(0.45 + 0.25*max(quality[i],0)))
-            unresolved = max(0, unresolved + opened - closed)
+
+            for _ in range(opened):
+                severity = action_rng.choice(
+                    ["low", "moderate", "high"],
+                    p=[0.50, 0.35, 0.15],
+                )
+                opened_date = (
+                    period.to_timestamp(how="start")
+                    + pd.Timedelta(
+                        days=int(action_rng.integers(0, 20))
+                    )
+                )
+                due_days = {
+                    "low": 90,
+                    "moderate": 60,
+                    "high": 30,
+                }[severity]
+                action = {
+                    "action_id": next_action_id,
+                    "provider_id": int(pid),
+                    "opened_date": opened_date.date().isoformat(),
+                    "due_date": (
+                        opened_date + pd.Timedelta(days=due_days)
+                    ).date().isoformat(),
+                    "severity": severity,
+                    "closed_date": None,
+                }
+                action_records.append(action)
+                open_actions.append(action)
+                next_action_id += 1
+
+            closed = min(
+                len(open_actions),
+                rng.poisson(0.45 + 0.25*max(quality[i],0)),
+            )
+
+            open_actions.sort(
+                key=lambda action: (
+                    action["due_date"],
+                    action["opened_date"],
+                    action["action_id"],
+                )
+            )
+            closing = open_actions[:closed]
+            open_actions = open_actions[closed:]
+
+            for action in closing:
+                month_start = period.to_timestamp(how="start")
+                close_date = (
+                    month_start
+                    + pd.Timedelta(
+                        days=int(action_rng.integers(5, 28))
+                    )
+                )
+                opened_timestamp = pd.Timestamp(action["opened_date"])
+                if close_date < opened_timestamp:
+                    close_date = opened_timestamp
+                action["closed_date"] = close_date.date().isoformat()
+
+            unresolved = len(open_actions)
             risk = -3.6 + 0.075*late + 3.0*max(0.93-doc,0) + 0.10*complaints + 0.16*unresolved + 0.12*recent_finding_count + 0.03*max(caseload-12,0)
             finding = rng.binomial(1, logistic(risk))
             recent_findings.append(finding)
@@ -82,14 +144,24 @@ def main():
         skipna=True,
     )
 
+    corrective_actions = pd.DataFrame(action_records)
+
     raw = ROOT / "data" / "raw"
     raw.mkdir(parents=True, exist_ok=True)
     providers.to_csv(raw / "providers.csv", index=False)
     monthly.to_csv(raw / "provider_months.csv", index=False)
+    corrective_actions.to_csv(
+        raw / "corrective_actions.csv",
+        index=False,
+    )
     print(json.dumps({
         "providers": int(len(providers)),
         "provider_month_rows": int(len(monthly)),
-        "material_findings": int(monthly["material_finding"].sum())
+        "material_findings": int(monthly["material_finding"].sum()),
+        "corrective_actions": int(len(corrective_actions)),
+        "open_corrective_actions": int(
+            corrective_actions["closed_date"].isna().sum()
+        )
     }, indent=2))
 
 if __name__ == "__main__":
