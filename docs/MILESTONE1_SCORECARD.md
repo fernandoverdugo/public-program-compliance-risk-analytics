@@ -64,7 +64,7 @@ These operational KPIs use broader descriptive cutoffs than the stricter review 
 
 ## Analyst value
 
-Milestone 1 demonstrates the work expected in compliance-oriented analyst roles:
+Milestone 1 establishes the core compliance-monitoring workflow:
 
 1. translate requirements into explicit SQL rules
 2. validate source data before reporting
