@@ -125,7 +125,7 @@ December 2025:
 
 ## Analyst value
 
-The milestone demonstrates that:
+The milestone shows that:
 
 1. alert volume changes materially with threshold choice;
 2. repeat issues should be distinguished from isolated exceptions;
