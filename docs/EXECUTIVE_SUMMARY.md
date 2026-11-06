@@ -1,6 +1,6 @@
 # Executive Summary
 
-## What this project demonstrates
+## Analytical scope
 
 This project simulates a state-administered regulated provider network and shows how a compliance analyst can move from raw operational data to audit-ready monitoring, remediation analysis, and predictive review prioritization.
 
@@ -113,7 +113,7 @@ The project deliberately separates three analytical layers:
 
 The model prioritizes human review. It does not establish noncompliance or automate enforcement.
 
-## Technical skills demonstrated
+## Methods and tools
 
 - SQL
 - SQLite
@@ -139,6 +139,6 @@ The model prioritizes human review. It does not establish noncompliance or autom
 
 ## Bottom line
 
-The project demonstrates how regulatory and program-domain knowledge can be translated into a modern analytics workflow.
+The analysis translates regulatory and program-domain knowledge into a structured analytics workflow.
 
 It begins with the work expected of a compliance or data analyst—SQL controls, data validation, monitoring, remediation tracking, and reporting—and extends that foundation into temporally validated predictive modeling and model governance.
