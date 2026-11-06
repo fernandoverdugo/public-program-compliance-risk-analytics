@@ -94,7 +94,7 @@ Provider type and region are excluded from prediction but retained for performan
 
 Performance is notably weaker for the smaller Specialty segment.
 
-Because the data are synthetic, this is not evidence of real-world disparate performance. It demonstrates why segment-specific validation remains necessary even when segment descriptors are excluded from model inputs.
+Because the data are synthetic, this is not evidence of real-world disparate performance. It illustrates why segment-specific validation remains necessary even when segment descriptors are excluded from model inputs.
 
 ### Region
 
@@ -139,4 +139,4 @@ Milestone 4 establishes:
 - coefficient interpretation
 - a validated lean model specification
 
-The next optional analytical extension is anomaly detection as a separate unsupervised signal. A final portfolio pass should also add concise figures and an executive summary before the repository is considered finished.
+An optional analytical extension is anomaly detection as a separate unsupervised signal. The current analysis, figures, executive summary, and validation workflow are complete.
