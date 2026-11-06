@@ -1,6 +1,6 @@
 # Public Program Compliance Monitoring & Risk Analytics
 
-A portfolio project simulating a state-administered regulated program to demonstrate SQL-based compliance monitoring, KPI reporting, exception detection, and predictive risk analytics.
+A synthetic analysis of a state-administered regulated program using SQL-based compliance monitoring, KPI reporting, exception detection, and predictive risk analytics.
 
 
 ## Project snapshot
@@ -150,7 +150,7 @@ Provider type and region are retained for segment auditing but excluded from pre
 
 [Read the Milestone 3 modeling findings](docs/MILESTONE3_RISK_MODELING.md)
 
-Because the data are synthetic, these performance metrics demonstrate methodology rather than expected real-world deployment performance.
+Because the data are synthetic, these performance metrics characterize the simulated analysis and should not be interpreted as expected real-world deployment performance.
 
 ## Milestone 4 — model diagnostics and decision support
 
@@ -199,7 +199,7 @@ calibration + capacity analysis
 segment auditing
 ```
 
-The repository is complete as a portfolio project. Future extensions should be driven by a new analytical question rather than added complexity for its own sake.
+The core analysis is complete. Future extensions should be driven by a new analytical question rather than added complexity for its own sake.
 
 All data are synthetic. No real program, provider, client, or case information is used.
 
@@ -254,7 +254,7 @@ tests/           modeling, diagnostics, and project-quality tests
 
 ## Responsible use
 
-This is a synthetic portfolio project. Risk scores are designed to prioritize human review, not establish noncompliance or automate enforcement. Provider type and region are excluded from the preferred model and retained only for segment auditing.
+This project uses synthetic data. Risk scores are designed to prioritize human review, not establish noncompliance or automate enforcement. Provider type and region are excluded from the preferred model and retained only for segment auditing.
 
 
 ## License
