@@ -16,7 +16,7 @@ All data in this repository are synthetic.
 
 The simulation was designed to contain persistent but noisy compliance-risk structure through reporting delay, documentation quality, complaints, unresolved remediation, recent findings, caseload pressure, and provider-level risk.
 
-The reported model metrics therefore demonstrate **modeling and validation methodology**, not expected performance in a real regulatory program.
+The reported model metrics therefore describe performance within this synthetic validation setting, not expected performance in a real regulatory program.
 
 ## Feature design
 
