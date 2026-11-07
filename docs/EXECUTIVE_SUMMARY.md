@@ -4,7 +4,7 @@
 
 This project simulates a state-administered regulated provider network and shows how a compliance analyst can move from raw operational data to audit-ready monitoring, remediation analysis, and predictive review prioritization.
 
-It is designed to bridge **regulatory/compliance experience** with the technical skills expected in Data Analyst and Data Scientist roles.
+It connects **regulatory/compliance concepts** with SQL-based monitoring, remediation analysis, and predictive risk modeling.
 
 All data are synthetic.
 
@@ -141,4 +141,4 @@ The model prioritizes human review. It does not establish noncompliance or autom
 
 The analysis translates regulatory and program-domain knowledge into a structured analytics workflow.
 
-It begins with the work expected of a compliance or data analyst—SQL controls, data validation, monitoring, remediation tracking, and reporting—and extends that foundation into temporally validated predictive modeling and model governance.
+It begins with SQL controls, data validation, monitoring, remediation tracking, and reporting, then extends that foundation into temporally validated predictive modeling and model governance.
